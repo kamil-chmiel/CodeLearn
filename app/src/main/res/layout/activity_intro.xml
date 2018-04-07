@@ -16,7 +16,7 @@
         android:id="@+id/layoutDots"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dots_height"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/sign_up"
         android:layout_marginBottom="@dimen/dots_margin_bottom"
         android:gravity="center"
         android:orientation="horizontal"></LinearLayout>
@@ -34,8 +34,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/layoutDots"
         android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         android:text="Sign in" />
 
 
