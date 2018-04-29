@@ -51,8 +51,6 @@ public class IntroActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        //btnSkip = (Button) findViewById(R.id.btn_skip);
-        //btnNext = (Button) findViewById(R.id.btn_next);
 
 
         // layouts of all welcome sliders
@@ -72,27 +70,31 @@ public class IntroActivity extends AppCompatActivity {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-//        btnSkip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                launchHomeScreen();
-//            }
-//        });
-//
-//        btnNext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // checking for last page
-//                // if last page home screen will be launched
-//                int current = getItem(+1);
-//                if (current < layouts.length) {
-//                    // move to next screen
-//                    viewPager.setCurrentItem(current);
-//                } else {
-//                    launchHomeScreen();
-//                }
-//            }
-//        });
+        // setting buttons
+        Button signUpButton = findViewById(R.id.sign_up);
+        signUpButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentSignUp = new Intent(IntroActivity.this , SignUpActivity.class);
+                startActivity(intentSignUp);
+            }
+        });
+
+        Button signInButton = findViewById(R.id.sign_in);
+        signInButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentSignIn = new Intent(IntroActivity.this , SignInActivity.class);
+                startActivity(intentSignIn);
+            }
+        });
+
+        Button menuButton = findViewById(R.id.menu_test);
+        menuButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent menuTest = new Intent(IntroActivity.this , MainActivity.class);
+                startActivity(menuTest);
+            }
+        });
+
     }
 
     private void addBottomDots(int currentPage) {
@@ -120,7 +122,7 @@ public class IntroActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(IntroActivity.this, MainActivity.class));
+        startActivity(new Intent(IntroActivity.this, LevelActivity.class));
         finish();
     }
 
