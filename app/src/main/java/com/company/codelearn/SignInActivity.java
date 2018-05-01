@@ -2,17 +2,13 @@ package com.company.codelearn;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity {
-    private FirebaseAuth auth;
+    private AccountManager accountManager;
 
     private EditText mailTextField;
     private EditText passwordTextField;
@@ -26,7 +22,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        auth = FirebaseAuth.getInstance();
+        accountManager = new AccountManager();
 
         mailTextField = findViewById(R.id.signInEmailText);
         passwordTextField = findViewById(R.id.signInPasswordText);
@@ -35,56 +31,50 @@ public class SignInActivity extends AppCompatActivity {
         signInFacebookButton = findViewById(R.id.signInFacebookButton);
         signInGoogleButton = findViewById(R.id.signInGoogleButton);
 
+        initButtons();
+    }
+
+    private void initButtons() {
+        initSignInBasicButton();
+    }
+
+    private void initSignInBasicButton() {
         signInBasicButton.setOnClickListener(view -> {
             String mail = mailTextField.getText().toString();
             String password = passwordTextField.getText().toString();
 
-            boolean isFormValid = true;
+            AccountManager.CredentialsState state = accountManager.validateCredentials(mail, password);
 
-            if(mail == null || mail.isEmpty()) {
-                mailTextField.setError("E-mail cannot be empty.");
-                isFormValid = false;
-            } else {
-                if(!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            switch (state) {
+                case EMAIL_EMPTY:
+                    mailTextField.setError("E-mail cannot be empty.");
+                    break;
+                case E_MAIL_INCORRECT:
                     mailTextField.setError("E-mail has incorrect format.");
-                    isFormValid = false;
-                }
+                    break;
+                case PASSWORD_EMPTY:
+                    passwordTextField.setError("Password cannot be empty.");
+                    break;
+                case VALID:
+                default:
+                    // TODO: add progressbar/loading-bar here
+                    accountManager.signIn(this, mail, password)
+                            .addOnCompleteListener(this, authResultTask -> {
+                                if (authResultTask.isSuccessful()) {
+                                    UserData data = accountManager.getUserData();
+                                    Intent intent = new Intent(this, MainActivity.class);
+                                    intent.putExtra("UserData", data);
+                                    startActivity(intent);
+                                } else {
+                                    Snackbar.make(view, "Authentication failed", Snackbar.LENGTH_LONG)
+                                            .setAction("RETRY", v -> {
+                                                signInBasicButton.callOnClick();
+                                            })
+                                            .show();
+                                }
+                            });
+                    break;
             }
-
-            if(password == null || password.isEmpty()) {
-                passwordTextField.setError("Password cannot be empty.");
-                isFormValid = false;
-            } else {
-                if(password.length() < 6) {
-                    passwordTextField.setError("Password is too short.");
-                    isFormValid = false;
-                }
-            }
-
-            if(!isFormValid) {
-                return;
-            }
-
-            auth.signInWithEmailAndPassword(mailTextField.getText().toString(), passwordTextField.getText().toString())
-                    .addOnCompleteListener(this, authResultTask -> {
-                        if (authResultTask.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "signInWithEmail:success");
-                            System.out.println("Success!");
-                            FirebaseUser user = auth.getCurrentUser();
-
-                            Intent intent = new Intent(this,
-                                    MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
         });
     }
 }
