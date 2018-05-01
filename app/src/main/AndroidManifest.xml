@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kamil.codelearn">
+    package="com.company.codelearn">
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".LevelActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".SignInActivity" />
         <activity
             android:name=".MainActivity"
