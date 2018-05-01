@@ -18,6 +18,17 @@
         android:textSize="24sp" />
 
     <EditText
+        android:id="@+id/signUpNameText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textEmailAddress" />
+
+    <EditText
         android:id="@+id/signUpEmailText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -63,8 +74,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
-        android:layout_marginTop="40dp"
         android:text="or"
         android:textAlignment="center" />
 

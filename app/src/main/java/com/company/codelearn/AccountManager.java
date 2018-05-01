@@ -6,6 +6,7 @@ import android.util.Patterns;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.io.Serializable;
 
@@ -22,7 +23,7 @@ class AccountManager implements Serializable {
         return new UserData(auth.getCurrentUser());
     }
 
-    public enum CredentialsState {VALID, EMAIL_EMPTY, E_MAIL_INCORRECT, PASSWORD_EMPTY, PASSWORD_LENGTH, REPEAT_EMPTY, REEPAT_NOT_SAME;}
+    public enum CredentialsState {VALID, NAME_EMPTY ,EMAIL_EMPTY, E_MAIL_INCORRECT, PASSWORD_EMPTY, PASSWORD_LENGTH, REPEAT_EMPTY, REEPAT_NOT_SAME;}
 
     public CredentialsState validateCredentials(String mail, String password) {
         if (mail == null || mail.isEmpty()) {
@@ -40,7 +41,11 @@ class AccountManager implements Serializable {
         return VALID;
     }
 
-    public CredentialsState validateCredentials(String mail, String password, String repeatPassword) {
+    public CredentialsState validateCredentials(String name, String mail, String password, String repeatPassword) {
+        if(name == null || name.isEmpty()) {
+            return NAME_EMPTY;
+        }
+
         if (mail == null || mail.isEmpty()) {
             return EMAIL_EMPTY;
         }
@@ -74,5 +79,12 @@ class AccountManager implements Serializable {
 
     public Task<AuthResult> signUp(String mail, String password) {
         return auth.createUserWithEmailAndPassword(mail, password);
+    }
+
+    public void updateDisplayName(String name) {
+        UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
+        builder.setDisplayName(name);
+
+        auth.getCurrentUser().updateProfile(builder.build());
     }
 }

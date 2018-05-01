@@ -40,8 +40,8 @@ public class SignInActivity extends AppCompatActivity {
 
     private void initSignInBasicButton() {
         signInBasicButton.setOnClickListener(view -> {
-            String mail = mailTextField.getText().toString();
-            String password = passwordTextField.getText().toString();
+            String mail = mailTextField.getText().toString().trim();
+            String password = passwordTextField.getText().toString().trim();
 
             AccountManager.CredentialsState state = accountManager.validateCredentials(mail, password);
 

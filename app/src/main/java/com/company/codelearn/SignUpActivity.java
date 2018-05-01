@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class SignUpActivity extends AppCompatActivity {
     private AccountManager accountManager;
 
+    private EditText nameTextField;
     private EditText mailTextField;
     private EditText passwordTextField;
     private EditText repeatPasswordTextField;
@@ -25,6 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         accountManager = new AccountManager();
 
+        nameTextField = findViewById(R.id.signUpNameText);
         mailTextField = findViewById(R.id.signUpEmailText);
         passwordTextField = findViewById(R.id.signUpPasswordText);
         repeatPasswordTextField = findViewById(R.id.signUpRepeatPasswordText);
@@ -42,13 +44,16 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void initSignUpButton() {
         signUpBasicButton.setOnClickListener(view -> {
-            String mail = mailTextField.getText().toString();
-            String password = passwordTextField.getText().toString();
-            String repeatPassword = repeatPasswordTextField.getText().toString();
+            String name = nameTextField.getText().toString().trim();
+            String mail = mailTextField.getText().toString().trim();
+            String password = passwordTextField.getText().toString().trim();
+            String repeatPassword = repeatPasswordTextField.getText().toString().trim();
 
-            AccountManager.CredentialsState state = accountManager.validateCredentials(mail, password, repeatPassword);
-            System.out.println("DBG\tSTATE: " + state);
+            AccountManager.CredentialsState state = accountManager.validateCredentials(name, mail, password, repeatPassword);
             switch (state) {
+                case NAME_EMPTY:
+                    nameTextField.setError("Name cannot be empty.");
+                    break;
                 case EMAIL_EMPTY:
                     mailTextField.setError("E-mail cannot be empty.");
                     break;
@@ -72,6 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
                     accountManager.signUp(mail, password)
                             .addOnCompleteListener(this, (authResultTask) -> {
                                 if (authResultTask.isSuccessful()) {
+                                    accountManager.updateDisplayName(name);
                                     // TODO: store userID in database?
                                     Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
                                     // TODO: Go to sign in or sign in instantly?
