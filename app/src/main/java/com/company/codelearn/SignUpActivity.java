@@ -2,17 +2,14 @@ package com.company.codelearn;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 public class SignUpActivity extends AppCompatActivity {
-    private FirebaseAuth auth;
+    private AccountManager accountManager;
 
     private EditText mailTextField;
     private EditText passwordTextField;
@@ -26,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        auth = FirebaseAuth.getInstance();
+        accountManager = new AccountManager();
 
         mailTextField = findViewById(R.id.signUpEmailText);
         passwordTextField = findViewById(R.id.signUpPasswordText);
@@ -35,92 +32,70 @@ public class SignUpActivity extends AppCompatActivity {
         signUpBasicButton = findViewById(R.id.signUpBasicButton);
         signInSocial = findViewById(R.id.signInSocial);
 
+        initActions();
+    }
+
+    private void initActions() {
+        initSignUpButton();
+        initSignInSocialButton();
+    }
+
+    private void initSignUpButton() {
         signUpBasicButton.setOnClickListener(view -> {
             String mail = mailTextField.getText().toString();
             String password = passwordTextField.getText().toString();
             String repeatPassword = repeatPasswordTextField.getText().toString();
 
-            boolean isFormValid = true;
-
-            if(mail == null || mail.isEmpty()) {
-                mailTextField.setError("E-mail cannot be empty.");
-                isFormValid = false;
-            } else {
-                if(!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            AccountManager.CredentialsState state = accountManager.validateCredentials(mail, password, repeatPassword);
+            System.out.println("DBG\tSTATE: " + state);
+            switch (state) {
+                case EMAIL_EMPTY:
+                    mailTextField.setError("E-mail cannot be empty.");
+                    break;
+                case E_MAIL_INCORRECT:
                     mailTextField.setError("E-mail has incorrect format.");
-                    isFormValid = false;
-                }
-            }
-
-            if(password == null || password.isEmpty()) {
-                passwordTextField.setError("Password cannot be empty.");
-                isFormValid = false;
-            } else {
-                if(password.length() < 6) {
-                    passwordTextField.setError("Password should have at least 6 characters.");
-                    isFormValid = false;
-                }
-
-                if(repeatPassword == null || repeatPassword.isEmpty()) {
+                    break;
+                case PASSWORD_EMPTY:
+                    passwordTextField.setError("Password cannot be empty.");
+                    break;
+                case PASSWORD_LENGTH:
+                    passwordTextField.setError("Password must have at least 6 characters.");
+                    break;
+                case REPEAT_EMPTY:
                     repeatPasswordTextField.setError("Repeat your password.");
-                    isFormValid = false;
-                } else {
-                    if(!password.equals(repeatPassword)) {
-                        repeatPasswordTextField.setError("Passwords are not identical!");
-                        isFormValid = false;
-                    }
-                }
+                    break;
+                case REEPAT_NOT_SAME:
+                    repeatPasswordTextField.setError("Passwords are not identical!");
+                    break;
+                case VALID:
+                default:
+                    accountManager.signUp(mail, password)
+                            .addOnCompleteListener(this, (authResultTask) -> {
+                                if (authResultTask.isSuccessful()) {
+                                    // TODO: store userID in database?
+                                    Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
+                                    // TODO: Go to sign in or sign in instantly?
+                                    Intent intent = new Intent(this, SignInActivity.class);
+                                    startActivity(intent);
+                                    Toast.makeText(this, "Now, you can log in!", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Snackbar.make(view, "Signing up failed!", Snackbar.LENGTH_LONG)
+                                            .setAction("RETRY", v -> {
+                                                signUpBasicButton.callOnClick();
+                                            })
+                                            .show();
+                                }
+                            });
+                    break;
             }
-
-            if(!isFormValid) {
-                return;
-            }
-
-            // TODO: show loading popup
-            auth.createUserWithEmailAndPassword(mail,
-                    passwordTextField.getText().toString())
-                    .addOnCompleteListener(this, (authResultTask) -> {
-                        if (authResultTask.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-//                        Log.d( "createUserWithEmail:success");
-                            // TODO: store userID in database???
-
-                            Toast.makeText(this, "Account created!",
-                                    Toast.LENGTH_SHORT).show();
-
-                            FirebaseUser user = auth.getCurrentUser();
-
-                            Intent intent = new Intent(this,
-                                    SignInActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            startActivity(intent);
-
-                            Toast.makeText(this, "Now, you can log in!",
-                                    Toast.LENGTH_LONG).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-//                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-//                        System.out.println("Failed!\n\t" + authResultTask.getException());
-                            Toast.makeText(this, "Authentication failed. " + authResultTask.getException(),
-                                    Toast.LENGTH_LONG).show();
-
-//                        updateUI(null);
-                        }
-                    });
-        });
-
-        signInSocial.setOnClickListener(view -> {
-            Intent intent = new Intent(SignUpActivity.this , SignInActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Can be used in other activites (?)
-//        FirebaseUser currentUser = auth.getCurrentUser();
+    private void initSignInSocialButton() {
+        signInSocial.setOnClickListener(view -> {
+            Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
     }
 }

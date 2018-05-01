@@ -9,10 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 
-import static com.company.codelearn.AccountManager.CredentialsState.EMAIL_EMPTY;
-import static com.company.codelearn.AccountManager.CredentialsState.E_MAIL_INCORRECT;
-import static com.company.codelearn.AccountManager.CredentialsState.PASSWORD_EMPTY;
-import static com.company.codelearn.AccountManager.CredentialsState.VALID;
+import static com.company.codelearn.AccountManager.CredentialsState.*;
 
 class AccountManager implements Serializable {
     private FirebaseAuth auth;
@@ -25,7 +22,7 @@ class AccountManager implements Serializable {
         return new UserData(auth.getCurrentUser());
     }
 
-    public enum CredentialsState {VALID, EMAIL_EMPTY, E_MAIL_INCORRECT, PASSWORD_EMPTY, PASSWORD_LENGTH;}
+    public enum CredentialsState {VALID, EMAIL_EMPTY, E_MAIL_INCORRECT, PASSWORD_EMPTY, PASSWORD_LENGTH, REPEAT_EMPTY, REEPAT_NOT_SAME;}
 
     public CredentialsState validateCredentials(String mail, String password) {
         if (mail == null || mail.isEmpty()) {
@@ -56,10 +53,26 @@ class AccountManager implements Serializable {
             return PASSWORD_EMPTY;
         }
 
+        if (password.length() < 6) {
+            return PASSWORD_LENGTH;
+        }
+
+        if (repeatPassword == null || repeatPassword.isEmpty()) {
+            return REPEAT_EMPTY;
+        }
+
+        if (!password.equals(repeatPassword)) {
+            return REEPAT_NOT_SAME;
+        }
+
         return VALID;
     }
 
     public Task<AuthResult> signIn(Activity activity, String mail, String password) {
         return this.auth.signInWithEmailAndPassword(mail, password);
+    }
+
+    public Task<AuthResult> signUp(String mail, String password) {
+        return auth.createUserWithEmailAndPassword(mail, password);
     }
 }

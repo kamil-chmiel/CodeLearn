@@ -31,10 +31,10 @@ public class SignInActivity extends AppCompatActivity {
         signInFacebookButton = findViewById(R.id.signInFacebookButton);
         signInGoogleButton = findViewById(R.id.signInGoogleButton);
 
-        initButtons();
+        initActions();
     }
 
-    private void initButtons() {
+    private void initActions() {
         initSignInBasicButton();
     }
 
