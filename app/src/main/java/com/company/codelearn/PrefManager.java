@@ -1,4 +1,4 @@
-package com.example.kamil.codelearn;
+package com.company.codelearn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
