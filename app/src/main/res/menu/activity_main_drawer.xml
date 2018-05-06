@@ -30,7 +30,7 @@
                 android:title="Invite Friend" />
             <item
                 android:id="@+id/nav_friends"
-                android:icon="@drawable/friendList"
+                android:icon="@drawable/friend_list"
                 android:title="Friend List" />
         </menu>
     </item>
