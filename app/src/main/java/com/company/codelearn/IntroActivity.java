@@ -21,13 +21,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
-    private TextView[] dots;
+    private ImageView[] dots;
     private int[] layouts;
     private PrefManager prefManager;
 
@@ -87,33 +90,28 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-        Button menuButton = findViewById(R.id.menu_test);
-        menuButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Intent menuTest = new Intent(IntroActivity.this , MainActivity.class);
-                startActivity(menuTest);
-            }
-        });
 
     }
 
     private void addBottomDots(int currentPage) {
-        dots = new TextView[layouts.length];
+        dots = new android.widget.ImageView[layouts.length];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
-            dotsLayout.addView(dots[i]);
+            dots[i] = new ImageView(this);
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.circle_dots_inactive));
+
+
+            LinearLayout.LayoutParams dotsParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            dotsParams.setMargins(10, 0, 10, 0);
+
+            dotsLayout.addView(dots[i],dotsParams);
         }
 
         if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+            dots[currentPage].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.circle_dots_active));
+
     }
 
     private int getItem(int i) {
