@@ -90,6 +90,14 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
+        Button menuButton = findViewById(R.id.menu_test);
+        menuButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent menuTest = new Intent(IntroActivity.this , MainActivity.class);
+                startActivity(menuTest);
+            }
+        });
+
 
     }
 
