@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.example.kamil.codelearn.SignUpActivity">
+    tools:context="com.company.codelearn.SignUpActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -18,60 +18,89 @@
         android:textSize="24sp" />
 
     <EditText
+        android:id="@+id/signInEmailText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:ems="10"
         android:hint="E-mail"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/signInPasswordText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:hint="Password"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/signInBasicButton"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_weight="1"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
         android:text="Sign in" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginBottom="40dp"
         android:layout_marginTop="40dp"
+        android:layout_weight="1"
         android:text="or"
         android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/button4"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginTop="40dp"
-        android:text="Sign In with Facebook" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ce"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:baselineAlignBottom="false"
+            android:cropToPadding="false"
+            android:paddingLeft="80dp"
+            android:textAlignment="center"
+            app:srcCompat="@drawable/fblogo" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:paddingRight="80dp"
+            app:srcCompat="@drawable/googlelogo" />
+    </LinearLayout>
 
     <Button
+        android:id="@+id/signInFacebookButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:text="Sign In with Facebook" />
+
+    <Button
+        android:id="@+id/signInGoogleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:text="Sign In with Google" />
 
 </LinearLayout>
