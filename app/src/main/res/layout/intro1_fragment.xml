@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen1">
+    android:background="@color/intro_bg_screen1">
+
+    <ImageView
+        android:id="@+id/image_intro_1"
+        android:layout_width="310dp"
+        android:layout_height="255dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/image_intro_1" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="110dp"
+        android:layout_below="@id/image_intro_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -17,8 +31,20 @@
             android:text="Read the articles"
             android:textColor="@android:color/white"
             android:textSize="@dimen/slide_title"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/roboto_thin" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="And you will learn about programming"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/slide_desc"
+            app:fontFamily="@font/roboto_thin" />
 
 
     </LinearLayout>
+
 </RelativeLayout>
