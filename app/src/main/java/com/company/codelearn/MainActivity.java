@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private UserData userData;
@@ -73,18 +74,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_stats) {
+            Toast.makeText(this,"Stats", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_ranking) {
+            Toast.makeText(this,"Ranking", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_profile) {
+            Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Toast.makeText(this,"Share", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_invite) {
+            Toast.makeText(this,"Invite", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_friends) {
+            Toast.makeText(this,"Friends List", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
