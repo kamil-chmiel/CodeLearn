@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="383dp"
+        android:layout_height="292dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="146dp"
+            android:layout_height="139dp"
+            app:srcCompat="@drawable/profileIco"
+            tools:layout_editor_absoluteX="119dp"
+            tools:layout_editor_absoluteY="37dp" />
+
+        <TextView
+            android:id="@+id/loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="163dp"
+            tools:layout_editor_absoluteY="176dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="178dp"
+        android:layout_height="271dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="294dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingBottom="20sp"
+            android:text="Points:"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="406dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingBottom="20sp"
+            android:text="Level:"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="248dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingBottom="20sp"
+            android:text="Ukończono:"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="334dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="207dp"
+        android:layout_height="274dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="294dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20sp"
+            android:text="999"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="406dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20sp"
+            android:text="999"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="248dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20sp"
+            android:text="999"
+            android:textSize="32sp"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="334dp" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
