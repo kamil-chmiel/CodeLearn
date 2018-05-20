@@ -16,15 +16,14 @@
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="146dp"
             android:layout_height="139dp"
-            app:srcCompat="@drawable/profileIco"
+            app:srcCompat="@drawable/profileico"
             tools:layout_editor_absoluteX="119dp"
             tools:layout_editor_absoluteY="37dp" />
 
         <TextView
-            android:id="@+id/loginText"
+            android:id="@+id/showStatsLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -68,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:paddingBottom="20sp"
-            android:text="Ukończono:"
+            android:text="Complete:"
             android:textSize="32sp"
             tools:layout_editor_absoluteX="42dp"
             tools:layout_editor_absoluteY="334dp" />
@@ -83,6 +82,7 @@
         tools:layout_editor_absoluteY="294dp">
 
         <TextView
+            android:id="@+id/showStatsPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -93,6 +93,7 @@
             tools:layout_editor_absoluteY="406dp" />
 
         <TextView
+            android:id="@+id/showStatsLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -103,6 +104,7 @@
             tools:layout_editor_absoluteY="248dp" />
 
         <TextView
+            android:id="@+id/showStatsComplete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
