@@ -76,11 +76,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_stats) {
-            Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
             Intent intentShowStats = new Intent(MainActivity.this , ShowStatsActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_ranking) {
-
+            Toast.makeText(this,"ranking", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_profile) {
             Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
