@@ -1,120 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <LinearLayout
-        android:layout_width="383dp"
-        android:layout_height="292dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_horizontal"
+        android:orientation="vertical">
         <ImageView
             android:layout_width="146dp"
             android:layout_height="139dp"
             app:srcCompat="@drawable/profileico"
+            android:layout_marginTop="30dp"
             tools:layout_editor_absoluteX="119dp"
             tools:layout_editor_absoluteY="37dp" />
-
         <TextView
-            android:id="@+id/showStatsLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
             android:textAlignment="center"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="163dp"
-            tools:layout_editor_absoluteY="176dp" />
+            android:text="Login"
+            android:textSize="40sp" />
     </LinearLayout>
-
-
     <LinearLayout
-        android:layout_width="178dp"
-        android:layout_height="271dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="294dp">
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:gravity="left"
+        android:layout_marginLeft="16dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingBottom="20sp"
-            android:text="Points:"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="406dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingBottom="20sp"
             android:text="Level:"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="56dp"
-            tools:layout_editor_absoluteY="248dp" />
-
+            android:textSize="40sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingBottom="20sp"
-            android:text="Complete:"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="334dp" />
-
+            android:layout_marginLeft="30dp"
+            android:text="999"
+            android:textSize="40sp" />
     </LinearLayout>
-
     <LinearLayout
-        android:layout_width="207dp"
-        android:layout_height="274dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="294dp">
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="left"
+        android:layout_marginLeft="16dp">
         <TextView
-            android:id="@+id/showStatsPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="20sp"
-            android:text="999"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="406dp" />
-
+            android:text="Points:"
+            android:textSize="40sp" />
         <TextView
-            android:id="@+id/showStatsLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="20sp"
+            android:layout_marginLeft="30dp"
             android:text="999"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="56dp"
-            tools:layout_editor_absoluteY="248dp" />
-
+            android:textSize="40sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="16dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
         <TextView
-            android:id="@+id/showStatsComplete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="20sp"
+            android:text="Complete:"
+            android:textSize="40sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text="999"
-            android:textSize="32sp"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="334dp" />
-
+            android:textSize="40sp" />
     </LinearLayout>
 
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
