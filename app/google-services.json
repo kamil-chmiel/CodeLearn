@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "667568430002",
+    "firebase_url": "https://codelearn-6f81a.firebaseio.com",
+    "project_id": "codelearn-6f81a",
+    "storage_bucket": "codelearn-6f81a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667568430002:android:ee19b4c47dbb564b",
+        "android_client_info": {
+          "package_name": "com.company.codelearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667568430002-8esoaa4blr0beflnsnk628j647t7d411.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.codelearn",
+            "certificate_hash": "786e4ec2ca133a83c298dce3693655607c181ca3"
+          }
+        },
+        {
+          "client_id": "667568430002-jrsn43u40nv9544igp1qfvo4ojrtnr8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.codelearn",
+            "certificate_hash": "c608aac9da6a142c4598af070b3f0c796f0e0182"
+          }
+        },
+        {
+          "client_id": "667568430002-4j6h94rlt5jh31as5bk9v5bi5p3rtsaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuWJglldWAw1rVJcL45ATQ8e_0R1oskis"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667568430002-4j6h94rlt5jh31as5bk9v5bi5p3rtsaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
