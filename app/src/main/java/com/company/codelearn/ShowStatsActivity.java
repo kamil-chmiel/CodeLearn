@@ -9,7 +9,7 @@ public class ShowStatsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this,"sDASDASDAD", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Show Stats", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_show_stats);
     }
 }
