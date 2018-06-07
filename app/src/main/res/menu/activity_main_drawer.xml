@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profile"
+            android:title="Profile" />
+        <item
             android:id="@+id/nav_stats"
             android:icon="@drawable/stats"
             android:title="Show Stats" />
@@ -12,26 +16,22 @@
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ranking"
             android:title="Global Ranking" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/profile"
-            android:title="Profile" />
     </group>
 
     <item android:title="Manage social media">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_friends"
+                android:icon="@drawable/friend_list"
+                android:title="Friend List" />
             <item
                 android:id="@+id/nav_invite"
                 android:icon="@drawable/invite"
                 android:title="Invite Friend" />
             <item
-                android:id="@+id/nav_friends"
-                android:icon="@drawable/friend_list"
-                android:title="Friend List" />
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Contact" />
         </menu>
     </item>
 

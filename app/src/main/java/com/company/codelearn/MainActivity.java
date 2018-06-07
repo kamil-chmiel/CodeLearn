@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this,"ranking", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_profile) {
             Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_share) {
-            Toast.makeText(this,"Share", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_contact) {
+            Toast.makeText(this,"Contact", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_invite) {
             Toast.makeText(this,"Invite", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_friends) {
