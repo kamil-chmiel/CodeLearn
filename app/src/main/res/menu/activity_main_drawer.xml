@@ -9,10 +9,6 @@
             android:icon="@drawable/profile"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_stats"
-            android:icon="@drawable/stats"
-            android:title="Show Stats" />
-        <item
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ranking"
             android:title="Global Ranking" />
@@ -35,4 +31,12 @@
         </menu>
     </item>
 
+
+    <item android:title="" >
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Log out" />
+        </menu>
+    </item>
 </menu>

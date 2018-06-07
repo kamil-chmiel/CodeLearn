@@ -75,13 +75,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_stats) {
-            Intent intentShowStats = new Intent(MainActivity.this , ShowStatsActivity.class);
-            startActivity(intentShowStats);
+        if (id == R.id.nav_profile) {
+            Intent intentProfile = new Intent(MainActivity.this , ProfileActivity.class);
+            startActivity(intentProfile);
         } else if (id == R.id.nav_ranking) {
             Toast.makeText(this,"ranking", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_profile) {
-            Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_contact) {
             Toast.makeText(this,"Contact", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_invite) {
