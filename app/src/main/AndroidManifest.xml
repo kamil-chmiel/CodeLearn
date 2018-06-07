@@ -25,6 +25,7 @@
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".ShowStatsActivity" />
         <activity android:name=".RankingActivity" />
+        <activity android:name=".InviteFriendActivity" />
     </application>
 
 </manifest>
