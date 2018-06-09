@@ -80,10 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intentProfile);
         } else if (id == R.id.nav_ranking) {
             Toast.makeText(this,"ranking", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this , RankingActivity.class);
+            startActivity(intentShowStats);
         } else if (id == R.id.nav_contact) {
             Toast.makeText(this,"Contact", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_invite) {
-            Toast.makeText(this,"Invite", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this ,InviteFriendActivity.class);
+            startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
             Toast.makeText(this,"Friends List", Toast.LENGTH_SHORT).show();
         }
