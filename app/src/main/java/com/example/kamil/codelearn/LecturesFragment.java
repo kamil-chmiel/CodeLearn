@@ -1,5 +1,6 @@
 package com.example.kamil.codelearn;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -54,10 +57,12 @@ public class LecturesFragment extends Fragment {
 
         ArrayList lectures = new ArrayList<LecturesCell>();
 
-        lectures.add(new LectureCell("Lekcja nr1", 3));
+        lectures.add(new LectureSectionCell("Basic syntax", 0, 100, new Date()));
+        lectures.add(new LectureCell("Lekcja nr1", 0, 10));
+        lectures.add(new LectureCell("Lekcja nr2", 0, 20));
 
         ListView listView = (ListView) getView().findViewById(R.id.lectures_list);
-        adapter = new CustomAdapter(lectures, getView().getContext());
+        adapter = new CustomAdapter(getActivity(), lectures);
 
         listView.setAdapter(adapter);
     }
@@ -99,35 +104,59 @@ public class LecturesFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    class CustomAdapter extends ArrayAdapter<LecturesCell> implements View.OnClickListener{
-
-        private ArrayList<LecturesCell> dataSet;
-        Context mContext;
-
-
-        public CustomAdapter(ArrayList<LecturesCell> data, Context context) {
-            super(context, R.layout.lecture_section_cell, data);
-            this.dataSet = data;
-            this.mContext=context;
-
-        }
-
-        @Override
-        public void onClick(View v) {
-
-
-        }
-
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lecture_section_cell, parent, false);
-            return convertView;
-        }
-    }
-
-
 
 }
 
+class CustomAdapter extends BaseAdapter {
+
+    private Activity activity;
+    private ArrayList<LecturesCell> data;
+    private static LayoutInflater inflater=null;
+
+    public CustomAdapter(Activity a, ArrayList<LecturesCell> d) {
+        activity = a;
+        data=d;
+        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public int getCount() {
+        return data.size();
+    }
+
+    public Object getItem(int position) {
+        return position;
+    }
+
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View vi=convertView;
+
+        if(data.get(position).type == CellType.section) {
+            if(convertView==null)
+                vi = inflater.inflate(R.layout.lecture_section_cell, null);
+        }
+        else {
+            if(convertView==null)
+                vi = inflater.inflate(R.layout.lecture_cell, null);
+        }
+
+
+//        TextView title = (TextView)vi.findViewById(R.id.title); // title
+//        TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
+//        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
+//        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
+//
+//        HashMap&lt;String, String&gt; song = new HashMap&lt;String, String&gt;();
+//        song = data.get(position);
+//
+//        // Setting all values in listview
+//        title.setText(song.get(CustomizedListView.KEY_TITLE));
+//        artist.setText(song.get(CustomizedListView.KEY_ARTIST));
+//        duration.setText(song.get(CustomizedListView.KEY_DURATION));
+//        imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
+        return vi;
+    }
+}

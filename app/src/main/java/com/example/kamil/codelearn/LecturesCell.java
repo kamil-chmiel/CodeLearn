@@ -1,5 +1,10 @@
 package com.example.kamil.codelearn;
 
-public class LecturesCell {
+enum CellType {
+    section,
+    lecture
+}
 
+public class LecturesCell {
+    public CellType type;
 }

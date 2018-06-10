@@ -1,6 +1,7 @@
 package com.example.kamil.codelearn;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
         implements LecturesFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +42,42 @@ public class MainActivity extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.learn_container, lecturesFragment)
                 .commit();
+
+        Button quizTab = findViewById(R.id.quiz_tab);
+        quizTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment quizFragment = QuizFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, quizFragment)
+                        .commit();
+            }
+        });
+
+        Button learnTab = findViewById(R.id.learn_tab);
+        learnTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment lecturesFragment = LecturesFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, lecturesFragment)
+                        .commit();
+            }
+        });
+
+        Button socialTab = findViewById(R.id.social_tab);
+        socialTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment socialFragment = SocialFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, socialFragment)
+                        .commit();
+            }
+        });
 
     }
 

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/section_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Getting started"
@@ -45,7 +45,7 @@
             app:srcCompat="@drawable/star" />
 
         <TextView
-            android:id="@+id/stars_label"
+            android:id="@+id/section_stars_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
