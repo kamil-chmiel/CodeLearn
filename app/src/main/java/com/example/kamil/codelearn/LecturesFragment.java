@@ -2,6 +2,7 @@ package com.example.kamil.codelearn;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,8 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,10 +31,7 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class LecturesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    // TODO: Rename and change types of parameters
     private OnFragmentInteractionListener mListener;
     private static CustomAdapter adapter;
 
@@ -42,6 +44,7 @@ public class LecturesFragment extends Fragment {
         LecturesFragment fragment = new LecturesFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -55,16 +58,13 @@ public class LecturesFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList lectures = new ArrayList<LecturesCell>();
 
-        lectures.add(new LectureSectionCell("Basic syntax", 0, 100, new Date()));
-        lectures.add(new LectureCell("Lekcja nr1", 0, 10));
-        lectures.add(new LectureCell("Lekcja nr2", 0, 20));
+        fillList();
+    }
 
-        ListView listView = (ListView) getView().findViewById(R.id.lectures_list);
-        adapter = new CustomAdapter(getActivity(), lectures);
-
-        listView.setAdapter(adapter);
+    @Override
+    public void onAttachFragment(Fragment childFragment) {
+        super.onAttachFragment(childFragment);
     }
 
     @Override
@@ -84,12 +84,12 @@ public class LecturesFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
 
@@ -102,6 +102,75 @@ public class LecturesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    private void fillList() {
+        ArrayList<LecturesCell> lectures = new ArrayList<LecturesCell>();
+
+        lectures.add(new LectureSectionCell("Getting started", 15, 50, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Quick C++ History", 10, 10));
+        ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
+        lectures.add(new LectureCell("Lesson 2: Environment setup", 5, 10));
+        ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
+        lectures.add(new LectureCell("Lesson 3: Hello Wolrd", 0, 30));
+
+        lectures.add(new LectureSectionCell("Basic syntax", 0, 100, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Data types", 0, 20));
+        lectures.add(new LectureCell("Lesson 2: Variables", 0, 20));
+        lectures.add(new LectureCell("Lesson 3: Constants", 0, 20));
+        lectures.add(new LectureCell("Lesson 4: Loops", 0, 20));
+        lectures.add(new LectureCell("Lesson 5: if statement", 0, 10));
+        lectures.add(new LectureCell("Lesson 6: switch", 0, 10));
+
+        lectures.add(new LectureSectionCell("Operators", 0, 200, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Assignment operator", 0, 20));
+        lectures.add(new LectureCell("Lesson 2: Arithmetic operators", 0, 20));
+        lectures.add(new LectureCell("Lesson 3: Increment and decrement", 0, 20));
+        lectures.add(new LectureCell("Lesson 4: Comparision operators", 0, 20));
+        lectures.add(new LectureCell("Lesson 5: Logical operators", 0, 20));
+        lectures.add(new LectureCell("Lesson 6: Conditional Ternary Operator", 0, 25));
+        lectures.add(new LectureCell("Lesson 7: Coma operator", 0, 25));
+        lectures.add(new LectureCell("Lesson 8: Type casting", 0, 25));
+        lectures.add(new LectureCell("Lesson 9: sizeof operator", 0, 25));
+
+        lectures.add(new LectureSectionCell("Object Oriented Programming", 0, 120, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Classes", 0, 20));
+        lectures.add(new LectureCell("Lesson 2: Constructors and descructors", 0, 20));
+        lectures.add(new LectureCell("Lesson 3: Getters and setters", 0, 20));
+        lectures.add(new LectureCell("Lesson 4: The “this” keyword", 0, 20));
+        lectures.add(new LectureCell("Lesson 5: Inheritance", 0, 20));
+        lectures.add(new LectureCell("Lesson 6: Example code", 0, 20));
+
+        lectures.add(new LectureSectionCell("Pointers", 0, 100, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Pointer definition", 0, 25));
+        lectures.add(new LectureCell("Lesson 2: Standard pointers", 0, 25));
+        lectures.add(new LectureCell("Lesson 3: Smart pointers", 0, 25));
+        lectures.add(new LectureCell("Lesson 4: Example", 0, 25));
+
+        lectures.add(new LectureSectionCell("Advanced OOP", 0, 150, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Polimorphism", 0, 50));
+        lectures.add(new LectureCell("Lesson 2: Encapsulation", 0, 50));
+        lectures.add(new LectureCell("Lesson 3: Abstract classes", 0, 50));
+
+        lectures.add(new LectureSectionCell("Advanced Data Types", 0, 300, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Multidimensional Arrays", 0, 50));
+        lectures.add(new LectureCell("Lesson 2: References", 0, 50));
+        lectures.add(new LectureCell("Lesson 3: Delete operator", 0, 50));
+        lectures.add(new LectureCell("Lesson 4: Struct", 0, 50));
+        lectures.add(new LectureCell("Lesson 5: Unions", 0, 50));
+        lectures.add(new LectureCell("Lesson 6: Enumerators", 0, 50));
+
+        lectures.add(new LectureSectionCell("Preprocessor", 0, 200, new Date()));
+        lectures.add(new LectureCell("Lesson 1: Macro definitions", 0, 50));
+        lectures.add(new LectureCell("Lesson 2: Conditional Directives", 0, 50));
+        lectures.add(new LectureCell("Lesson 3: Line Directive", 0, 50));
+        lectures.add(new LectureCell("Lesson 4: Error Directive", 0, 50));
+
+        ListView listView = (ListView) getView().findViewById(R.id.lectures_list);
+        adapter = new CustomAdapter(getActivity(), lectures);
+
+        listView.setAdapter(adapter);
     }
 
 
@@ -135,28 +204,41 @@ class CustomAdapter extends BaseAdapter {
         View vi=convertView;
 
         if(data.get(position).type == CellType.section) {
-            if(convertView==null)
-                vi = inflater.inflate(R.layout.lecture_section_cell, null);
+            LectureSectionCell section = (LectureSectionCell)data.get(position);vi = inflater.inflate(R.layout.lecture_section_cell, null);
+
+            TextView title = (TextView)vi.findViewById(R.id.section_title);
+            TextView stars = (TextView)vi.findViewById(R.id.section_stars_label);
+            TextView startDate = (TextView)vi.findViewById(R.id.start_date_label);
+            ProgressBar progressBar = (ProgressBar)vi.findViewById(R.id.progressBar);
+
+
+            title.setText( section.sectionTitle );
+            stars.setText(section.progress.toString() + "/" + section.maxPoints.toString());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            startDate.setText("Started: " + formatter.format(section.startDate));
+            progressBar.getProgressDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
         }
         else {
-            if(convertView==null)
-                vi = inflater.inflate(R.layout.lecture_cell, null);
+            LectureCell lecture = (LectureCell) data.get(position);
+
+            vi = inflater.inflate(R.layout.lecture_cell, null);
+
+            // TU ON CLICK LECTURE
+            //vi.setOnClickListener();
+
+            TextView title = (TextView)vi.findViewById(R.id.lecture_title);
+            ImageView tick = (ImageView)vi.findViewById(R.id.tickImage);
+
+            title.setText(lecture.title + "(" + lecture.progress + "/" + lecture.maxPoints + ")");
+
+            if(lecture.progress < lecture.maxPoints) {
+                tick.setVisibility(View.INVISIBLE);
+                if(!lecture.unlocked)
+                    title.setTextColor(Color.GRAY);
+            }
         }
 
 
-//        TextView title = (TextView)vi.findViewById(R.id.title); // title
-//        TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
-//        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
-//        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
-//
-//        HashMap&lt;String, String&gt; song = new HashMap&lt;String, String&gt;();
-//        song = data.get(position);
-//
-//        // Setting all values in listview
-//        title.setText(song.get(CustomizedListView.KEY_TITLE));
-//        artist.setText(song.get(CustomizedListView.KEY_ARTIST));
-//        duration.setText(song.get(CustomizedListView.KEY_DURATION));
-//        imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }
 }

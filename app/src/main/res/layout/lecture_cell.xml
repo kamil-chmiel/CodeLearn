@@ -5,16 +5,17 @@
     android:layout_height="40dp">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lecture_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:text="Lesson 1: 'Variables' (10/10)"
-        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/tickImage"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginTop="12dp"

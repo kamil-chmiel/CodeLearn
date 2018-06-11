@@ -5,6 +5,7 @@ public class LectureCell extends LecturesCell {
     String title;
     Integer progress;
     Integer maxPoints;
+    public Boolean unlocked = false;
 
     public LectureCell(String title, Integer progress, Integer maxPoints) {
         this.type = CellType.lecture;
