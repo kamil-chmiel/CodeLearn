@@ -1,6 +1,8 @@
 package com.company.codelearn;
 
 import android.content.Intent;
+import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,10 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements LecturesFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
     private UserData userData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Fragment lecturesFragment = LecturesFragment.newInstance();
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.learn_container, lecturesFragment)
+                .commit();
+
+        Button quizTab = findViewById(R.id.quiz_tab);
+        quizTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment quizFragment = QuizFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, quizFragment)
+                        .commit();
+            }
+        });
+
+        Button learnTab = findViewById(R.id.learn_tab);
+        learnTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment lecturesFragment = LecturesFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, lecturesFragment)
+                        .commit();
+            }
+        });
+
+        Button socialTab = findViewById(R.id.social_tab);
+        socialTab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment socialFragment = SocialFragment.newInstance();
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.learn_container, socialFragment)
+                        .commit();
+            }
+        });
+
     }
 
     @Override
@@ -52,6 +102,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri){
+        //you can leave it empty
     }
 
     @Override

@@ -24,9 +24,13 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditProfile" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".InviteFriendActivity" />
+        <activity
+            android:name=".LectureViewActivity"
+            android:label="@string/title_activity_lecture_view_activiy"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
