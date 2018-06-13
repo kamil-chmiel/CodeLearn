@@ -22,14 +22,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LecturesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LecturesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LecturesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
@@ -57,8 +49,6 @@ public class LecturesFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         fillList();
     }
 
@@ -113,7 +103,7 @@ public class LecturesFragment extends Fragment {
         ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
         lectures.add(new LectureCell("Lesson 2: Environment setup", 5, 10));
         ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
-        lectures.add(new LectureCell("Lesson 3: Hello Wolrd", 0, 30));
+        lectures.add(new LectureCell("Lesson 3: Hello World", 0, 30));
 
         lectures.add(new LectureSectionCell("Basic syntax", 0, 100, new Date()));
         lectures.add(new LectureCell("Lesson 1: Data types", 0, 20));
@@ -216,6 +206,7 @@ class CustomAdapter extends BaseAdapter {
             stars.setText(section.progress.toString() + "/" + section.maxPoints.toString());
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             startDate.setText("Started: " + formatter.format(section.startDate));
+            progressBar.setProgress((section.progress/section.maxPoints)*100);
             progressBar.getProgressDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
         }
         else {
