@@ -145,8 +145,8 @@ class QuizListAdapter extends BaseAdapter {
         number.setText("Quiz " + data.get(position).id);
         title.setText( "'"+ data.get(position).title + "'");
         result.setText( "("+ data.get(position).points + "/" + data.get(position).maxPoints + ")");
-        if(!data.get(position).unlocked)
-            tick.setVisibility(View.INVISIBLE);
+        if(data.get(position).unlocked)
+            tick.setImageResource(R.drawable.tick);
         return vi;
     }
 }

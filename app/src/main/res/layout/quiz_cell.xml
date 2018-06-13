@@ -58,7 +58,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"
             android:layout_marginTop="28dp"
-            app:srcCompat="@drawable/tick" />
+            app:srcCompat="@drawable/lock" />
 
     </RelativeLayout>
 

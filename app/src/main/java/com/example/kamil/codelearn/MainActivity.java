@@ -2,6 +2,8 @@ package com.example.kamil.codelearn;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,9 +46,15 @@ public class MainActivity extends AppCompatActivity
                 .commit();
 
         Button quizTab = findViewById(R.id.quiz_tab);
+        Button learnTab = findViewById(R.id.learn_tab);
+        Button socialTab = findViewById(R.id.social_tab);
         quizTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment quizFragment = QuizFragment.newInstance();
+
+                quizTab.setTextColor(Color.parseColor("#FF3F51B5"));
+                learnTab.setTextColor(Color.BLACK);
+                socialTab.setTextColor(Color.BLACK);
 
                 getFragmentManager()
                         .beginTransaction()
@@ -55,10 +63,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        Button learnTab = findViewById(R.id.learn_tab);
         learnTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment lecturesFragment = LecturesFragment.newInstance();
+
+                quizTab.setTextColor(Color.BLACK);
+                learnTab.setTextColor(Color.parseColor("#FF3F51B5"));
+                socialTab.setTextColor(Color.BLACK);
 
                 getFragmentManager()
                         .beginTransaction()
@@ -67,10 +78,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        Button socialTab = findViewById(R.id.social_tab);
         socialTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment socialFragment = SocialFragment.newInstance();
+
+                quizTab.setTextColor(Color.BLACK);
+                learnTab.setTextColor(Color.BLACK);
+                socialTab.setTextColor(Color.parseColor("#FF3F51B5"));
 
                 getFragmentManager()
                         .beginTransaction()
