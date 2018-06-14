@@ -152,7 +152,8 @@ public class MainActivity extends AppCompatActivity
             Intent intentShowStats = new Intent(MainActivity.this, RankingActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_contact) {
-            Toast.makeText(this, "Contact", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this, ContactActivity.class);
+            startActivity(intentShowStats);
         } else if (id == R.id.nav_invite) {
             Intent intentShowStats = new Intent(MainActivity.this, InviteFriendActivity.class);
             startActivity(intentShowStats);
