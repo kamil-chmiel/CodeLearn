@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/contact_us"/>
+        <Spinner
+            android:id="@+id/SpinnerFeedbackType"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:prompt="Request Type"
+            android:entries="@array/feedbacktypelist">
+        </Spinner>
+        <EditText
+            android:id="@+id/EditTextName"
+            android:layout_height="wrap_content"
+            android:hint="input"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/EditTextFeedbackBody"
+            android:layout_height="wrap_content"
+            android:hint="body"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="match_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/EditTextEmail"
+            android:layout_height="wrap_content"
+            android:hint="feedback"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent">
+        </EditText>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+            android:id="@+id/ButtonSendFeedback"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Send"
+            android:onClick="sendFeedback"
+            android:textColor="#FFFF"
+            android:background="#2586fb">
+        </Button>
+</LinearLayout>
