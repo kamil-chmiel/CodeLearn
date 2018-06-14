@@ -7,11 +7,8 @@ public class DB {
     ArrayList<String> lessons = new ArrayList<>();
 
     private DB() {
-
         createLessons();
-
     }
-
 
     public static DB getInstance( ) {
         return instance;
@@ -61,7 +58,6 @@ public class DB {
         lessons.add("placeholder");
         lessons.add("placeholder");
         lessons.add("placeholder");
-
     }
 }
 

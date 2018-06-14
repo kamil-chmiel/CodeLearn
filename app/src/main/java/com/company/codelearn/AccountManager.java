@@ -81,10 +81,10 @@ class AccountManager implements Serializable {
         return auth.createUserWithEmailAndPassword(mail, password);
     }
 
-    public void updateDisplayName(String name) {
+    public Task<Void> updateDisplayName(String name) {
         UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
         builder.setDisplayName(name);
 
-        auth.getCurrentUser().updateProfile(builder.build());
+        return auth.getCurrentUser().updateProfile(builder.build());
     }
 }

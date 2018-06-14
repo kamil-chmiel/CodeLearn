@@ -7,9 +7,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.company.codelearn.database.DatabaseHelper;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class RankingActivity extends AppCompatActivity {
 
@@ -23,32 +25,16 @@ public class RankingActivity extends AppCompatActivity {
     private void updateRankingList(){
         ListView rankingList = findViewById(R.id.ranking_list);
 
-        String[] lokaLoka = new String[] {
-                "NUMER: LOGIN PUNKTY",
-                "2: KOTEK 999",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka",
-                "Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka",
-                "Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka","Lokka Lokka",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-                "Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry","Capuli cherry",
-        };
-
-        // Create a List from String Array elements
-        final List<String> lokaLoka_list = new ArrayList<>(Arrays.asList(lokaLoka));
+        List<String> rankingListArray = new ArrayList<>();
+        Map<UserData, Integer> map = new DatabaseHelper(getApplicationContext()).getRankingList();
+        for (Map.Entry<UserData, Integer> entry : map.entrySet())
+        {
+            rankingListArray.add(entry.getKey().getName() + " -> " + entry.getValue());
+        }
 
         // Create an ArrayAdapter from List
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, lokaLoka_list);
+                (this, android.R.layout.simple_list_item_1, rankingListArray);
 
         // DataBind ListView with items from ArrayAdapter
         rankingList.setAdapter(arrayAdapter);
