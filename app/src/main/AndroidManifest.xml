@@ -31,6 +31,7 @@
             android:name=".LectureViewActivity"
             android:label="@string/title_activity_lecture_view_activiy"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".FriendActivity" />
     </application>
 
 </manifest>
