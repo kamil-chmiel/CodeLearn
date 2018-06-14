@@ -16,12 +16,11 @@ public class FriendActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
-
         ArrayList<String> list = new ArrayList<>();
         list.add("Tom Cruise");
         list.add("Kamil Majerczyk");
         list.add("Adrian Playboy to ja");
-
+        getWindow().setBackgroundDrawableResource(R.drawable.hands);
         adapter = new FriendListViewAdapter(list, this);
 
         ListView lView = (ListView) findViewById(R.id.friend_list_view);
