@@ -35,7 +35,7 @@ public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
         return 0;
     }
 
-    public void addUser(String name){
+    public void addUser(String name) {
         list.add(name);
         notifyDataSetChanged();
     }
@@ -48,20 +48,14 @@ public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.friend_list_item, null);
         }
 
-        //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
+        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
         listItemText.setText(list.get(position));
 
-        //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
+        Button deleteBtn = (Button) view.findViewById(R.id.delete_btn);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
-                notifyDataSetChanged();
-            }
+        deleteBtn.setOnClickListener(v -> {
+            list.remove(position);
+            notifyDataSetChanged();
         });
 
         return view;
