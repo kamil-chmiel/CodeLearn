@@ -27,22 +27,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        initEditProfileButton();
-    }
-
-    private void initEditProfileButton() {
-        Button editProfileButton = (Button) getView().findViewById(R.id.editProfileButton);
-
-        editProfileButton.setOnClickListener(view -> {
-            Intent intentEditProfile = new Intent(getActivity(), EditProfile.class);
-            getActivity().startActivity(intentEditProfile);
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        Button editProfileButton = (Button) inflatedView.findViewById(R.id.editProfileButton);
+
+        editProfileButton.setOnClickListener(view -> {
+            Intent intentEditProfile = new Intent(getActivity(), EditProfile.class);
+            startActivity(intentEditProfile);
+        });
+
+        return inflatedView;
     }
 
     public void onButtonPressed(Uri uri) {
