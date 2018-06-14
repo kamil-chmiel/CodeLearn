@@ -114,7 +114,7 @@ public class LecturesFragment extends Fragment {
         ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
         lectures.add(new LectureCell(2,"Lesson 2: Environment setup", 5, 10));
         ((LectureCell)lectures.get(lectures.size()-1)).unlocked = true;
-        lectures.add(new LectureCell(3,"Lesson 3: Hello Wolrd", 0, 30));
+        lectures.add(new LectureCell(3,"Lesson 3: Hello World", 0, 30));
 
         lectures.add(new LectureSectionCell("Basic syntax", 0, 100, new Date()));
         lectures.add(new LectureCell(4,"Lesson 1: Data types", 0, 20));
@@ -167,6 +167,7 @@ public class LecturesFragment extends Fragment {
         lectures.add(new LectureCell(39,"Lesson 2: Conditional Directives", 0, 50));
         lectures.add(new LectureCell(40,"Lesson 3: Line Directive", 0, 50));
         lectures.add(new LectureCell(41,"Lesson 4: Error Directive", 0, 50));
+
 
         ListView listView = (ListView) getView().findViewById(R.id.lectures_list);
         adapter = new CustomAdapter(getActivity(), lectures);
@@ -231,7 +232,6 @@ class CustomAdapter extends BaseAdapter {
 
                     Intent lectureViewIntent = new Intent(v.getContext(),LectureViewActivity.class);
                     lectureViewIntent.putExtra("lessonNumber",lecture.lessonNumber);
-                    lectureViewIntent.putExtra("lessonTitle",lecture.title);
                     v.getContext().startActivity(lectureViewIntent);
 
                 }
