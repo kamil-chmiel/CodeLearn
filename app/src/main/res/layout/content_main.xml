@@ -19,8 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="LEARN"
             android:background="#eceded"
+            android:text="LEARN"
+            android:textColor="@color/colorPrimary"
             android:visibility="visible" />
 
         <Button

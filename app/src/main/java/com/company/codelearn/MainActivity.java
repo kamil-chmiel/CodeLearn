@@ -2,6 +2,8 @@ package com.company.codelearn;
 
 import android.content.Intent;
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -50,9 +52,15 @@ public class MainActivity extends AppCompatActivity
                 .commit();
 
         Button quizTab = findViewById(R.id.quiz_tab);
+        Button learnTab = findViewById(R.id.learn_tab);
+        Button socialTab = findViewById(R.id.social_tab);
         quizTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment quizFragment = QuizFragment.newInstance();
+
+                quizTab.setTextColor(Color.parseColor("#FF3F51B5"));
+                learnTab.setTextColor(Color.BLACK);
+                socialTab.setTextColor(Color.BLACK);
 
                 getFragmentManager()
                         .beginTransaction()
@@ -61,10 +69,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        Button learnTab = findViewById(R.id.learn_tab);
         learnTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment lecturesFragment = LecturesFragment.newInstance();
+
+                quizTab.setTextColor(Color.BLACK);
+                learnTab.setTextColor(Color.parseColor("#FF3F51B5"));
+                socialTab.setTextColor(Color.BLACK);
 
                 getFragmentManager()
                         .beginTransaction()
@@ -73,10 +84,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        Button socialTab = findViewById(R.id.social_tab);
         socialTab.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment socialFragment = SocialFragment.newInstance();
+
+                quizTab.setTextColor(Color.BLACK);
+                learnTab.setTextColor(Color.BLACK);
+                socialTab.setTextColor(Color.parseColor("#FF3F51B5"));
 
                 getFragmentManager()
                         .beginTransaction()
@@ -105,7 +119,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri){
+    public void onFragmentInteraction(Uri uri) {
         //you can leave it empty
     }
 
@@ -131,19 +145,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            Intent intentProfile = new Intent(MainActivity.this , ProfileActivity.class);
+            Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intentProfile);
         } else if (id == R.id.nav_ranking) {
-            Toast.makeText(this,"ranking", Toast.LENGTH_SHORT).show();
-            Intent intentShowStats = new Intent(MainActivity.this , RankingActivity.class);
+            Toast.makeText(this, "ranking", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this, RankingActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_contact) {
-            Toast.makeText(this,"Contact", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Contact", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_invite) {
-            Intent intentShowStats = new Intent(MainActivity.this ,InviteFriendActivity.class);
+            Intent intentShowStats = new Intent(MainActivity.this, InviteFriendActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
-            Toast.makeText(this,"Friends List", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Friends List", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
