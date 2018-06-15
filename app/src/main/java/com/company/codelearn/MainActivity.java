@@ -157,7 +157,8 @@ public class MainActivity extends AppCompatActivity
             Intent intentShowStats = new Intent(MainActivity.this, InviteFriendActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
-            Toast.makeText(this, "Friends List", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this ,FriendActivity.class);
+            startActivity(intentShowStats);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
