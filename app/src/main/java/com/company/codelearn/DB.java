@@ -8,12 +8,9 @@ public class DB {
     ArrayList<String> titles = new ArrayList<>();
 
     private DB() {
-
         createLessons();
         createTitles();
-
     }
-
 
     public static DB getInstance( ) {
         return instance;
@@ -110,7 +107,6 @@ public class DB {
         lessons.add("placeholder");
         lessons.add("placeholder");
         lessons.add("placeholder");
-
     }
 
     private String history = "Język C++ został stworzony w latach osiemdziesiątych XX wieku (pierwsza wersja pojawiła się w 1979 r.) przez Bjarne Stroustrupa jako obiektowe rozszerzenie języka C. Poza językiem C, na definicję języka C++ miały wpływ takie języki, jak Simula (z której zaczerpnął właściwości obiektowe) oraz Algol, Ada, ML i Clu.\n" +

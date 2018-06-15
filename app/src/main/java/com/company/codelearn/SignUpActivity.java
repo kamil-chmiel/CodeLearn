@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.company.codelearn.database.DatabaseHelper;
+
 public class SignUpActivity extends AppCompatActivity {
     private AccountManager accountManager;
 
@@ -77,13 +79,14 @@ public class SignUpActivity extends AppCompatActivity {
                     accountManager.signUp(mail, password)
                             .addOnCompleteListener(this, (authResultTask) -> {
                                 if (authResultTask.isSuccessful()) {
-                                    accountManager.updateDisplayName(name);
-                                    // TODO: store userID in database?
-                                    Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
-                                    // TODO: Go to sign in or sign in instantly?
-                                    Intent intent = new Intent(this, SignInActivity.class);
-                                    startActivity(intent);
-                                    Toast.makeText(this, "Now, you can log in!", Toast.LENGTH_LONG).show();
+                                    accountManager.updateDisplayName(name).addOnCompleteListener(this, (updateDisplayNameTask) -> {
+                                        new DatabaseHelper(getApplicationContext()).createUser(accountManager.getUserData());
+
+                                        Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(this, SignInActivity.class);
+                                        startActivity(intent);
+                                        Toast.makeText(this, "Now, you can log in!", Toast.LENGTH_LONG).show();
+                                    });
                                 } else {
                                     Snackbar.make(view, "Signing up failed!", Snackbar.LENGTH_LONG)
                                             .setAction("RETRY", v -> {
