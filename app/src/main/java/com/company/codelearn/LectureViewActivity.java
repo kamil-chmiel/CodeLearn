@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LectureViewActivity extends AppCompatActivity {
@@ -23,24 +25,47 @@ public class LectureViewActivity extends AppCompatActivity {
 
         Intent lectureViewIntent = getIntent();
         Integer lectureNumber = lectureViewIntent.getIntExtra("lessonNumber",0);
-        String lectureTitle = lectureViewIntent.getStringExtra("lessonTitle");
+
 
         assert actionBar != null;
 
         if(lectureNumber == 0)
             actionBar.setTitle("Błędna lekcja!");
         else
-            actionBar.setTitle(lectureTitle);
+            actionBar.setTitle(DB.getInstance().titles.get(lectureNumber));
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         lectureText.setText(DB.getInstance().lessons.get(lectureNumber));
-        toolbar.setNavigationOnClickListener(view -> super.onBackPressed());
+        toolbar.setNavigationOnClickListener(view -> {
+
+            Intent mainIntent = new Intent(this,MainActivity.class);
+            view.getContext().startActivity(mainIntent);
+
+        });
 
 
-        Button doneButton = findViewById(R.id.doneButton);
-        doneButton.setOnClickListener(view -> super.onBackPressed());
+        Button continueButton = findViewById(R.id.continueButton);
+        continueButton.setOnClickListener(view -> {
 
+                lectureViewIntent.putExtra("lessonNumber", lectureNumber + 1);
+                view.getContext().startActivity(lectureViewIntent);
+
+        });
+
+        if(lectureNumber == 41)
+            continueButton.setVisibility(View.GONE);
+
+        Button previousButton = findViewById(R.id.previousButton);
+        previousButton.setOnClickListener(view -> {
+
+                lectureViewIntent.putExtra("lessonNumber", lectureNumber - 1);
+                view.getContext().startActivity(lectureViewIntent);
+
+        });
+
+        if(lectureNumber == 1)
+            previousButton.setVisibility(View.GONE);
 
     }
 
