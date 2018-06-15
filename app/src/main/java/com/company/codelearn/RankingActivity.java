@@ -14,29 +14,23 @@ import java.util.List;
 import java.util.Map;
 
 public class RankingActivity extends AppCompatActivity {
-
+    private RankingListViewAdapter adapter;
+    private ListView lView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "Ranking", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_ranking);
+        getWindow().setBackgroundDrawableResource(R.drawable.ranking_background);
+        adapter = new RankingListViewAdapter( this);
+        lView = (ListView) findViewById(R.id.ranking_list);
         updateRankingList();
     }
     private void updateRankingList(){
-        ListView rankingList = findViewById(R.id.ranking_list);
-
-        List<String> rankingListArray = new ArrayList<>();
         Map<UserData, Integer> map = new DatabaseHelper(getApplicationContext()).getRankingList();
         for (Map.Entry<UserData, Integer> entry : map.entrySet())
         {
-            rankingListArray.add(entry.getKey().getName() + " -> " + entry.getValue());
+            adapter.addRankingRecord(entry.getKey().getName(), entry.getValue().toString());
         }
-
-        // Create an ArrayAdapter from List
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, rankingListArray);
-
-        // DataBind ListView with items from ArrayAdapter
-        rankingList.setAdapter(arrayAdapter);
+        lView.setAdapter(adapter);
     }
 }
