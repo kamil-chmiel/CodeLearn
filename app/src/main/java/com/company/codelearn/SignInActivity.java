@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.company.codelearn.database.DatabaseHelper;
 import com.facebook.AccessToken;
@@ -167,8 +168,10 @@ public class SignInActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         System.out.println("Facebook sign in success!");
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
+
                         UserData data = accountManager.getUserData();
+                        data.setEmail("developercodelearn@gmail.com");
+
                         new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("UserData", data);
