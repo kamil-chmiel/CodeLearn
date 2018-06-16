@@ -40,6 +40,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        initLectures();
+        initQuiz();
+    }
+
+    private void initLectures() {
+        // TODO: add content of lectures (insert lectures content)
+    }
+
+    private void initQuiz() {
+        // TODO: add content of quiz (insert quiz questions and answers)
     }
 
     @Override
@@ -52,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         usersTableValues.put(DatabaseConsts.Users.ID, user.getUserId());
         usersTableValues.put(DatabaseConsts.Users.EMAIL, user.getEmail());
         usersTableValues.put(DatabaseConsts.Users.NAME, user.getName());
+        usersTableValues.put(DatabaseConsts.Ranking.UNLOCKED_LECTURES, 1);
         getWritableDatabase().insert(DatabaseConsts.Users.TABLE_NAME, null, usersTableValues);
 
         //Rank
@@ -69,12 +81,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().replace(DatabaseConsts.Users.TABLE_NAME, null, values);
     }
 
+    public void updateUnlockedLectures(UserData userData, Level level) {
+        // Update unlocked lectures according to level
+
+        int unlocked_lectures = 0;
+
+        switch(level) {
+            case LOW:
+                unlocked_lectures = 1;
+                break;
+            case MEDIUM:
+//                unlocked_lectures = ?;
+                break;
+            case HIGH:
+//                unlocked_lectures = ?;
+                break;
+        }
+
+        // TODO: Update column unlocked_lectures in database
+    }
+
     public void updateUserPoints(UserData userData, Integer pointDifference) {
         //TODO: implement later
     }
 
-    public Map<UserData, Integer> getRankingList() {
 
+    public int getUserPoints(UserData userData) {
+        //TODO: implement later
+        return 0;
+    }
+
+    public void getLectureContent(int lecture_id) {
+        // TODO: implement later
+    }
+
+
+    public void getQuiz(int quiz_id) {
+        // TODO: implement later
+    }
+
+    public Map<UserData, Integer> getRankingList() {
         HashMap<UserData, Integer> result = new HashMap<>();
         Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.Ranking.Queries.GET_RANKING_LIST_QUERY, null);
         while (cursor.moveToNext()) {

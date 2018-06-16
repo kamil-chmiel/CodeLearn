@@ -1,2 +1,4 @@
-CREATE TABLE IF NOT EXISTS ranking ( id varchar(30), points int )
-CREATE TABLE IF NOT EXISTS users ( id varchar(30), email varchar(30), name varchar(30) )
+CREATE TABLE IF NOT EXISTS ranking (id varchar(30), points int)
+CREATE TABLE IF NOT EXISTS users (id varchar(30), email varchar(30), name varchar(30), unlocked_lectures int)
+CREATE TABLE IF NOT EXISTS lectures (id int, content TEXT)
+CREATE TABLE IF NOT EXISTS quiz (id int, question TEXT, answer1 TEXT, answer2 TEXT, answer3 TEXT, answer4 TEXT, valid_answer int)
