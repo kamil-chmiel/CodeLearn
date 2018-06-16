@@ -12,7 +12,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -57,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Rank
         ContentValues rankTableValues = new ContentValues();
         rankTableValues.put(DatabaseConsts.Ranking.ID, user.getUserId());
-        rankTableValues.put(DatabaseConsts.Ranking.POINTS, 100);
+        rankTableValues.put(DatabaseConsts.Ranking.POINTS, 0);
         getWritableDatabase().insert(DatabaseConsts.Ranking.TABLE_NAME, null, rankTableValues);
     }
 
@@ -75,15 +77,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Map<UserData, Integer> getRankingList() {
 
-        HashMap<UserData, Integer> result = new HashMap<>();
-        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.Ranking.Queries.GET_RANKING_LIST_QUERY, null);
+        Map<UserData, Integer> result = new LinkedHashMap<>();
+        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.Ranking.RawQueries.GET_RANKING_LIST_QUERY, null);
         while (cursor.moveToNext()) {
             String id = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.ID));
             String name = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.NAME));
             String email = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.EMAIL));
             Integer rank = cursor.getInt(cursor.getColumnIndex(DatabaseConsts.Ranking.POINTS));
+            System.out.println(new UserData(id, name, email).toString() + rank);
             result.put(new UserData(id, name, email), rank);
+
         }
         return result;
+    }
+
+    public void createUserIfNotExist(UserData data) {
+        if(getUserDataFromEmail(data.getEmail()) == null) {
+            createUser(data);
+        }
+    }
+
+    public List<UserData> getFriendList(UserData user) {
+        List<UserData> result = new ArrayList<>();
+        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.FriendList.RawQueries.GET_FRIEND_LIST, new String[]{user.getUserId()});
+        while (cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndex(DatabaseConsts.FriendList.FRIEND_ID));
+            String name = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.NAME));
+            String email = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.EMAIL));
+            result.add(new UserData(id, name, email));
+        }
+        return result;
+    }
+
+    public void addFriend(UserData currentUser, UserData friend) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConsts.FriendList.ID, currentUser.getUserId());
+        values.put(DatabaseConsts.FriendList.FRIEND_ID, friend.getUserId());
+        getWritableDatabase().insert(DatabaseConsts.FriendList.TABLE_NAME, null, values);
+    }
+
+    public UserData getUserDataFromId(String id) {
+        Cursor cursor = getWritableDatabase().query(DatabaseConsts.Users.TABLE_NAME, null, DatabaseConsts.Users.ID + " = ?", new String[]{id}, null, null,null, String.valueOf(1));
+        if(cursor.getCount() == 0)
+            return null;
+        return getUserDataFromCursor(cursor);
+    }
+
+    private UserData getUserDataFromCursor(Cursor cursor) {
+        cursor.moveToFirst();
+        String id = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.ID));
+        String userEmail = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.EMAIL));
+        String name = cursor.getString(cursor.getColumnIndex(DatabaseConsts.Users.NAME));
+        return new UserData(id, name, userEmail);
+    }
+
+    public UserData getUserDataFromEmail(String email) {
+        Cursor cursor = getWritableDatabase().query(DatabaseConsts.Users.TABLE_NAME, null, DatabaseConsts.Users.EMAIL + " = ?", new String[]{email}, null, null,null, String.valueOf(1));
+        if(cursor.getCount() == 0)
+            return null;
+        return getUserDataFromCursor(cursor);
+    }
+
+    public void deleteFriend(UserData user, UserData friend) {
+        getWritableDatabase().delete(DatabaseConsts.FriendList.TABLE_NAME, DatabaseConsts.FriendList.ID + "=? AND " + DatabaseConsts.FriendList.FRIEND_ID + "=?", new String[]{user.getUserId(), friend.getUserId()});
+    }
+
+    public boolean areFriends(UserData currentUser, UserData friend) {
+        Cursor cursor = getWritableDatabase().query(DatabaseConsts.FriendList.TABLE_NAME, null, DatabaseConsts.FriendList.ID + "= ? AND " + DatabaseConsts.FriendList.FRIEND_ID + " = ?", new String[] {currentUser.getUserId(), friend.getUserId()}, null, null, null, String.valueOf(1));
+        return cursor.getCount() != 0;
     }
 }

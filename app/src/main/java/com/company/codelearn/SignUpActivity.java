@@ -81,7 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (authResultTask.isSuccessful()) {
                                     accountManager.updateDisplayName(name).addOnCompleteListener(this, (updateDisplayNameTask) -> {
                                         new DatabaseHelper(getApplicationContext()).createUser(accountManager.getUserData());
-
                                         Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(this, SignInActivity.class);
                                         startActivity(intent);

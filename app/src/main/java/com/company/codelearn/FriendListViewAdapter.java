@@ -9,13 +9,17 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.company.codelearn.database.DatabaseHelper;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list;
+    private List<UserData> list;
     private Context context;
 
-    public FriendListViewAdapter(ArrayList<String> list, Context context) {
+    public FriendListViewAdapter(List<UserData> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -27,7 +31,7 @@ public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public Object getItem(int pos) {
-        return list.get(pos);
+        return list.get(pos).getName();
     }
 
     @Override
@@ -35,8 +39,8 @@ public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
         return 0;
     }
 
-    public void addUser(String name) {
-        list.add(name);
+    public void addUser(UserData user) {
+        list.add(user);
         notifyDataSetChanged();
     }
 
@@ -49,11 +53,13 @@ public class FriendListViewAdapter extends BaseAdapter implements ListAdapter {
         }
 
         TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
+        listItemText.setText(getItem(position).toString());
 
         Button deleteBtn = (Button) view.findViewById(R.id.delete_btn);
 
         deleteBtn.setOnClickListener(v -> {
+            UserData currentUser = new UserData(FirebaseAuth.getInstance().getCurrentUser());
+            new DatabaseHelper(context).deleteFriend(currentUser, list.get(position));
             list.remove(position);
             notifyDataSetChanged();
         });

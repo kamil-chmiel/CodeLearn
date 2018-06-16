@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.company.codelearn.database.DatabaseHelper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -79,6 +80,7 @@ public class SignInActivity extends AppCompatActivity {
                             .addOnCompleteListener(this, authResultTask -> {
                                 if (authResultTask.isSuccessful()) {
                                     UserData data = accountManager.getUserData();
+                                    new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
                                     Intent intent = new Intent(this, MainActivity.class);
                                     intent.putExtra("UserData", data);
                                     startActivity(intent);
@@ -147,6 +149,7 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, authResultTask -> {
                     if (authResultTask.isSuccessful()) {
                         UserData data = accountManager.getUserData();
+                        new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("UserData", data);
                         startActivity(intent);
