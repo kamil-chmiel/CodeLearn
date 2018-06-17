@@ -12,4 +12,10 @@
     <string name="title_activity_lecture_view_activiy">Title</string>
     <string name="large_text">Random text</string>
     <string name="title_activity_quiz_view">QuizViewActivity</string>
+    <string name="feedbacktype1">Bug in question</string>
+    <string name="feedbacktype2">Request new question</string>
+    <string-array name="feedbacktypelist">
+        <item>@string/feedbacktype1</item>
+        <item>@string/feedbacktype2</item>
+    </string-array>
 </resources>

@@ -1,9 +1,8 @@
 package com.company.codelearn;
 
-import android.content.Intent;
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -152,12 +151,14 @@ public class MainActivity extends AppCompatActivity
             Intent intentShowStats = new Intent(MainActivity.this, RankingActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_contact) {
-            Toast.makeText(this, "Contact", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this, ContactActivity.class);
+            startActivity(intentShowStats);
         } else if (id == R.id.nav_invite) {
             Intent intentShowStats = new Intent(MainActivity.this, InviteFriendActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
-            Toast.makeText(this, "Friends List", Toast.LENGTH_SHORT).show();
+            Intent intentShowStats = new Intent(MainActivity.this ,FriendActivity.class);
+            startActivity(intentShowStats);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

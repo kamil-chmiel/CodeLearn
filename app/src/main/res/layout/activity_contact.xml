@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ImageView
+            android:id="@+id/contact_us_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/contact_us"/>
+        <Spinner
+            android:id="@+id/spinner_types"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:entries="@array/feedbacktypelist"
+            android:paddingBottom="30dp">
+        </Spinner>
+        <EditText
+            android:id="@+id/contact_chapter_name"
+            android:layout_height="wrap_content"
+            android:hint="Chapter name"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent">
+        </EditText>
+        <EditText
+            android:id="@+id/conctac_desc"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:lines="5">
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+        <Button
+                android:id="@+id/btn_send_contact_request"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Send"
+                android:textColor="#FFFF"
+                android:background="#2586fb">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

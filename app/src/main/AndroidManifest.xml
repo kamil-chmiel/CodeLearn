@@ -27,10 +27,13 @@
         <activity android:name=".EditProfile" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".InviteFriendActivity" />
+        <activity android:name=".ContactActivity"/>
         <activity
             android:name=".LectureViewActivity"
             android:label="@string/title_activity_lecture_view_activiy"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".FriendActivity" />
+
         <activity
             android:name=".QuizViewActivity"
             android:label="@string/title_activity_quiz_view"
