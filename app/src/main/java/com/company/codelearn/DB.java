@@ -1,15 +1,21 @@
 package com.company.codelearn;
 
+import android.util.SparseArray;
+
 import java.util.ArrayList;
+
 
 public class DB {
     private static DB instance = new DB();
     ArrayList<String> lessons = new ArrayList<>();
     ArrayList<String> titles = new ArrayList<>();
+    ArrayList<QuizElement> quizElements = new ArrayList<>();
+    private ArrayList<String> quizAnswers = new ArrayList<>();
 
     private DB() {
         createLessons();
         createTitles();
+        createQuiz();
     }
 
     public static DB getInstance( ) {
@@ -108,6 +114,33 @@ public class DB {
         lessons.add("placeholder");
         lessons.add("placeholder");
     }
+
+    private void createQuiz(){
+
+
+        quizAnswers.add("Konrad Adamik"); quizAnswers.add("Kamil Chmiel"); quizAnswers.add("Arkadiusz Jastrzębski"); quizAnswers.add("Kamil Majerczyk");
+        quizElements.add(new QuizElement(1,"Who created this?", new ArrayList<>(quizAnswers),1));
+        quizAnswers.clear();
+
+        quizAnswers.add("Chaos"); quizAnswers.add("Kronos"); quizAnswers.add("Kometa Halleya"); quizAnswers.add("God");
+        quizElements.add(new QuizElement(1,"Who created world?",new ArrayList<>(quizAnswers),3));
+        quizAnswers.clear();
+
+        quizAnswers.add("Fibbonaci"); quizAnswers.add("Vladimir Helloworldov"); quizAnswers.add("BillGates"); quizAnswers.add("Si plas plas");
+        quizElements.add(new QuizElement(1,"Who created hello world?",new ArrayList<>(quizAnswers),2));
+        quizAnswers.clear();
+
+        quizAnswers.add("Best guy in the world"); quizAnswers.add("Kolarz"); quizAnswers.add("Pedalarz"); quizAnswers.add("Scrum Master");
+        quizElements.add(new QuizElement(1,"Who is Adrian Madej?",new ArrayList<>(quizAnswers),4));
+        quizAnswers.clear();
+
+        quizAnswers.add("Beacuse its the best wzorzec"); quizAnswers.add("Because wymyślił to Konrad Adamik"); quizAnswers.add("Because YES"); quizAnswers.add("All of the aboce");
+        quizElements.add(new QuizElement(1,"Why DB.java have the best wzorzec projektowy - placeholder?",new ArrayList<>(quizAnswers),4));
+        quizAnswers.clear();
+
+
+    }
+
 
     private String history = "Język C++ został stworzony w latach osiemdziesiątych XX wieku (pierwsza wersja pojawiła się w 1979 r.) przez Bjarne Stroustrupa jako obiektowe rozszerzenie języka C. Poza językiem C, na definicję języka C++ miały wpływ takie języki, jak Simula (z której zaczerpnął właściwości obiektowe) oraz Algol, Ada, ML i Clu.\n" +
             "\n" +
