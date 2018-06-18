@@ -3,6 +3,7 @@ package com.company.codelearn;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -86,7 +88,7 @@ public class QuizFragment extends Fragment {
     private void fillList() {
         ArrayList<Quiz> quizes = new ArrayList<Quiz>();
 
-        quizes.add(new Quiz("1","Getting started Quiz", 50, 50, true));
+        quizes.add(new Quiz("1","Getting started", 50, 50, true));
         quizes.add(new Quiz("2","Basic syntax", 10, 100, true));
         quizes.add(new Quiz("3","Operators", 0, 100, false));
         quizes.add(new Quiz("4","Object Oriented Programming", 0, 100, false));
@@ -142,6 +144,20 @@ class QuizListAdapter extends BaseAdapter {
         result.setText( "("+ data.get(position).getPoints() + "/" + data.get(position).getMaxPoints() + ")");
         if(data.get(position).getUnlocked())
             tick.setImageResource(R.drawable.tick);
+
+        vi.setOnClickListener(view -> {
+
+            if(!data.get(position).getUnlocked())
+                Toast.makeText(view.getContext(),"This quiz is not yet unlocked!", Toast.LENGTH_LONG).show();
+            else {
+                Intent quizViewIntent = new Intent(view.getContext(), QuizViewActivity.class);
+                quizViewIntent.putExtra("quizNumber", data.get(position).getId());
+                quizViewIntent.putExtra("quizTitle",data.get(position).getTitle());
+                view.getContext().startActivity(quizViewIntent);
+            }
+
+        });
+
         return vi;
     }
 }
