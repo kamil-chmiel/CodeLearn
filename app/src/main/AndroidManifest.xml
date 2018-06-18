@@ -24,7 +24,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfile" />
+        <activity android:name=".EditProfileActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".InviteFriendActivity" />
         <activity android:name=".ContactActivity"/>

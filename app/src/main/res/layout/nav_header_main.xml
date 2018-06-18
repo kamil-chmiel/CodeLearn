@@ -23,7 +23,7 @@
         android:id="@+id/userLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Level:" />
+        android:text="Level: Junior" />
 
     <TextView
         android:id="@+id/userMail"
