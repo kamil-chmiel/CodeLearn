@@ -38,10 +38,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while ((line = reader.readLine()) != null) {
                 sqLiteDatabase.execSQL(line);
             }
+
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+       // createLectures(sqLiteDatabase);
+       //  createQuizzes(sqLiteDatabase);
     }
 
     @Override
@@ -61,6 +64,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         rankTableValues.put(DatabaseConsts.Ranking.ID, user.getUserId());
         rankTableValues.put(DatabaseConsts.Ranking.POINTS, 0);
         getWritableDatabase().insert(DatabaseConsts.Ranking.TABLE_NAME, null, rankTableValues);
+
+        //Last Lecture
+        ContentValues lastLectureValues = new ContentValues();
+        lastLectureValues.put(DatabaseConsts.UserLectures.ID, user.getUserId());
+        lastLectureValues.put(DatabaseConsts.UserLectures.LASTLECTUREID, 1);
+        getWritableDatabase().insert(DatabaseConsts.UserLectures.TABLE_NAME, null, lastLectureValues);
+
+        //Quizzes
+        fillUserQuizzes(user);
     }
 
     public void updateUserInfo(UserData userData) {
@@ -71,8 +83,100 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().replace(DatabaseConsts.Users.TABLE_NAME, null, values);
     }
 
-    public void updateUserPoints(UserData userData, Integer pointDifference) {
-        //TODO: implement later
+
+   /* public void createLectures(SQLiteDatabase database){
+
+        for(int i = 1; i < 42; ++i) {
+            ContentValues lectureValues = new ContentValues();
+            lectureValues.put(DatabaseConsts.Lectures.ID, i);
+            lectureValues.put(DatabaseConsts.Lectures.FILENAME, "lecture" + i + ".txt");
+            database.insert(DatabaseConsts.Lectures.TABLE_NAME, null, lectureValues);
+        }
+    }*/
+
+   /* public void createQuizzes(SQLiteDatabase database){
+
+        for(int i = 1; i < 9; ++i) {
+
+            ContentValues lectureValues = new ContentValues();
+            lectureValues.put(DatabaseConsts.Quizzes.ID, i);
+            lectureValues.put(DatabaseConsts.Quizzes.FILENAME, "lecture" + i + ".txt");
+            database.insert(DatabaseConsts.Quizzes.TABLE_NAME, null, lectureValues);
+
+        }
+
+    }*/
+
+    public int getUserPoints(UserData data){
+
+        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.Ranking.RawQueries.GET_USER_POINTS, new String[]{data.getUserId()});
+        cursor.moveToFirst();
+        return cursor.getInt(cursor.getColumnIndex(DatabaseConsts.Ranking.POINTS));
+
+    }
+
+    public void addUserPoints(UserData data, int pointsAdded){
+
+        int userPoints = getUserPoints(data);
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConsts.Ranking.ID,data.getUserId());
+        values.put(DatabaseConsts.Ranking.POINTS,userPoints + pointsAdded);
+        getWritableDatabase().replace(DatabaseConsts.Ranking.TABLE_NAME,null, values);
+
+    }
+
+    public int getUserLastLectureId(UserData data){
+
+        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.UserLectures.RawQueries.GET_USER_LAST_LECTURE_ID, new String[]{data.getUserId()});
+        cursor.moveToFirst();
+        return cursor.getInt(cursor.getColumnIndex(DatabaseConsts.UserLectures.LASTLECTUREID));
+    }
+
+    public void updateLastLectureID(UserData data){
+
+        int userLastLectureId = getUserLastLectureId(data);
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConsts.UserLectures.ID,data.getUserId());
+        values.put(DatabaseConsts.UserLectures.LASTLECTUREID,userLastLectureId + 1);
+        getWritableDatabase().replace(DatabaseConsts.UserLectures.TABLE_NAME,null, values);
+
+    }
+
+    private void fillUserQuizzes(UserData user){
+
+       for(Integer i = 1; i < 9; ++i) {
+
+           ContentValues userQuizzesValues = new ContentValues();
+           userQuizzesValues.put(DatabaseConsts.UserQuizzes.UNIQUEID, i);
+           userQuizzesValues.put(DatabaseConsts.UserQuizzes.ID, user.getUserId());
+           userQuizzesValues.put(DatabaseConsts.UserQuizzes.QUIZID, i.toString());
+           userQuizzesValues.put(DatabaseConsts.UserQuizzes.SCORE, 0);
+           getWritableDatabase().insert(DatabaseConsts.UserQuizzes.TABLE_NAME, null, userQuizzesValues);
+
+       }
+
+    }
+
+
+    public int getUserQuizIdScore(UserData data, String quizID){
+
+        Cursor cursor = getWritableDatabase().rawQuery(DatabaseConsts.UserQuizzes.RawQueries.GET_USER_QUIZ_ID_SCORE, new String[]{data.getUserId(),quizID});
+        cursor.moveToFirst();
+        System.out.println(quizID+" GETTER!");
+        return cursor.getInt(cursor.getColumnIndex(DatabaseConsts.UserQuizzes.SCORE));
+    }
+
+    public void updateUserQuizIdScore(UserData data, String quizID, int score){
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseConsts.UserQuizzes.UNIQUEID,Integer.parseInt(quizID));
+        values.put(DatabaseConsts.UserQuizzes.ID,data.getUserId());
+        values.put(DatabaseConsts.UserQuizzes.QUIZID,quizID);
+        values.put(DatabaseConsts.UserQuizzes.SCORE,score);
+        System.out.println(values);
+        System.out.println(data.getUserId()+" UPDATE!");
+        getWritableDatabase().replace(DatabaseConsts.UserQuizzes.TABLE_NAME,null, values);
+
     }
 
     public Map<UserData, Integer> getRankingList() {

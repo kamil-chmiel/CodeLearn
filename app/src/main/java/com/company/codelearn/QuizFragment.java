@@ -16,6 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.company.codelearn.database.DatabaseHelper;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 
@@ -88,14 +91,18 @@ public class QuizFragment extends Fragment {
     private void fillList() {
         ArrayList<Quiz> quizes = new ArrayList<Quiz>();
 
-        quizes.add(new Quiz("1","Getting started", 50, 50, true));
-        quizes.add(new Quiz("2","Basic syntax", 10, 100, true));
-        quizes.add(new Quiz("3","Operators", 0, 100, false));
-        quizes.add(new Quiz("4","Object Oriented Programming", 0, 100, false));
-        quizes.add(new Quiz("5","Pointers", 0, 200, false));
-        quizes.add(new Quiz("6","Advanced OOP", 0, 200, false));
-        quizes.add(new Quiz("7","Advanced Data Types", 0, 200, false));
-        quizes.add(new Quiz("8","Preprocessor", 0, 200, false));
+        UserData currentUser = new UserData(FirebaseAuth.getInstance().getCurrentUser());
+        int lastLecture = new DatabaseHelper(getActivity()).getUserLastLectureId(currentUser);
+
+
+        quizes.add(new Quiz("1","Getting started", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"1") , 50, lastLecture >= 4 ));
+        quizes.add(new Quiz("2","Basic syntax", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"2"), 100, lastLecture >= 10));
+        quizes.add(new Quiz("3","Operators", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"3"), 100, lastLecture >= 19));
+        quizes.add(new Quiz("4","Object Oriented Programming", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"4"), 100, lastLecture >= 25));
+        quizes.add(new Quiz("5","Pointers", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"5"), 200, lastLecture >= 29));
+        quizes.add(new Quiz("6","Advanced OOP", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"6"), 200, lastLecture >= 32));
+        quizes.add(new Quiz("7","Advanced Data Types", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"7"), 200, lastLecture >= 38));
+        quizes.add(new Quiz("8","Preprocessor", new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,"8"), 200, lastLecture >= 42));
 
 
         ListView listView = (ListView) getView().findViewById(R.id.quiz_list);

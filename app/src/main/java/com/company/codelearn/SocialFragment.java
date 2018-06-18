@@ -16,10 +16,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.company.codelearn.database.DatabaseHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -101,20 +106,18 @@ public class SocialFragment extends Fragment {
     }
 
     private void fillList() {
-        ArrayList<Friend> friends = new ArrayList<Friend>();
+        List<Friend> friends = new ArrayList<Friend>();
 
+        UserData currentUser = new UserData(FirebaseAuth.getInstance().getCurrentUser());
         // get friend ids
+        List<UserData> friendsData =  new DatabaseHelper(getActivity()).getFriendList(currentUser);
 
         // for - get friends names with ids
+        for(UserData friend : friendsData) {
+            friends.add(new Friend(friend.getName(), new DatabaseHelper(getActivity()).getUserPoints(friend)));
+        }
 
-        friends.add(new Friend("Tomasz Mokrzenia", 150));
-        friends.add(new Friend("Adam Niezdamytego", 150));
-        friends.add(new Friend("Robert Górski", 150));
-        friends.add(new Friend("Alicja Plażowa", 150));
-        friends.add(new Friend("Stevie Wonder", 200));
-        friends.add(new Friend("Maria Kalwaria", 150));
-        friends.add(new Friend("Tom Belwer", 150));
-        friends.add(new Friend("John Doe", 150));
+        Collections.sort(friends, new PointsComparator());
 
 
         ListView listView = (ListView) getView().findViewById(R.id.friends_list);
@@ -128,10 +131,10 @@ public class SocialFragment extends Fragment {
 class FriendsListAdapter extends BaseAdapter {
 
     private Activity activity;
-    private ArrayList<Friend> data;
+    private List<Friend> data;
     private static LayoutInflater inflater=null;
 
-    public FriendsListAdapter(Activity a, ArrayList<Friend> d) {
+    public FriendsListAdapter(Activity a, List<Friend> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -171,5 +174,12 @@ class Friend {
     public Friend(String name, Integer points) {
         this.name = name;
         this.points = points;
+    }
+}
+
+class PointsComparator implements Comparator<Friend> {
+    @Override
+    public int compare(Friend a, Friend b) {
+        return a.points < b.points ? 1 : a.points.equals(b.points) ? 0 : -1;
     }
 }

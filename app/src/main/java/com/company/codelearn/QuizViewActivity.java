@@ -18,6 +18,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.company.codelearn.database.DatabaseHelper;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 
@@ -43,7 +46,7 @@ public class QuizViewActivity extends AppCompatActivity  {
 
 
         Intent quizIntent = getIntent();
-
+        String quizNumber = quizIntent.getStringExtra("quizNumber");
 
         // SET TOOLBAR //
 
@@ -133,6 +136,7 @@ public class QuizViewActivity extends AppCompatActivity  {
             else{
                 args.clear();
                 args.putInt("score", score);
+                args.putString("quizNumber",quizNumber);
                 endFragment end = new endFragment();
                 end.setArguments(args);
 
@@ -178,17 +182,25 @@ public class QuizViewActivity extends AppCompatActivity  {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View end = inflater.inflate(R.layout.quiz_end_fragment, container, false);
+            UserData currentUser = new UserData(FirebaseAuth.getInstance().getCurrentUser());
 
             Bundle args = getArguments();
             Integer intScore = args.getInt("score",0);
+            String quizNumber = args.getString("quizNumber");
             String score = intScore.toString()+"/50";
 
             TextView scoreText = end.findViewById(R.id.score);
             scoreText.setText(score);
 
-
             Button menuButton = end.findViewById(R.id.menuButton);
             menuButton.setOnClickListener(view -> {
+
+                int bestScore = new DatabaseHelper(getActivity()).getUserQuizIdScore(currentUser,quizNumber);
+
+                if(intScore > bestScore) {
+                    new DatabaseHelper(getActivity()).updateUserQuizIdScore(currentUser, quizNumber, intScore);
+                    new DatabaseHelper(getActivity()).addUserPoints(currentUser,intScore-bestScore);
+                }
 
                 Intent mainIntent = new Intent(getActivity(),MainActivity.class);
                 view.getContext().startActivity(mainIntent);

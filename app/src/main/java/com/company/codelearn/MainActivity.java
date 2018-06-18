@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userData = (UserData) getIntent().getSerializableExtra("UserData");
+        userData = new UserData(FirebaseAuth.getInstance().getCurrentUser());
 
         System.out.println(userData);
 

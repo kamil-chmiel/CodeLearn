@@ -100,7 +100,6 @@ public class SignInActivity extends AppCompatActivity {
                                     UserData data = accountManager.getUserData();
                                     new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
                                     Intent intent = new Intent(this, MainActivity.class);
-                                    intent.putExtra("UserData", data);
                                     startActivity(intent);
                                 } else {
                                     Snackbar.make(view, "Authentication failed", Snackbar.LENGTH_LONG)
