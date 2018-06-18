@@ -33,7 +33,10 @@
             android:label="@string/title_activity_lecture_view_activiy"
             android:theme="@style/AppTheme"/>
         <activity android:name=".FriendActivity" />
-
+        <activity
+            android:name=".QuizViewActivity"
+            android:label="@string/title_activity_quiz_view"
+            android:theme="@style/AppTheme" />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -40,8 +41,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        initNavigationView();
 
         Fragment lecturesFragment = LecturesFragment.newInstance();
 
@@ -100,13 +100,21 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void initNavigationView() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View v = navigationView.getHeaderView(0);
+        ((TextView) v.findViewById(R.id.userName)).setText(userData.getName() == null || userData.getName().equals("") ? "Code Learn" : userData.getName());
+        ((TextView) v.findViewById(R.id.userLevel)).setText("Level: Junior");
+        ((TextView) v.findViewById(R.id.userMail)).setText(userData.getEmail());
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
     }
 
@@ -157,7 +165,7 @@ public class MainActivity extends AppCompatActivity
             Intent intentShowStats = new Intent(MainActivity.this, InviteFriendActivity.class);
             startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
-            Intent intentShowStats = new Intent(MainActivity.this ,FriendActivity.class);
+            Intent intentShowStats = new Intent(MainActivity.this, FriendActivity.class);
             startActivity(intentShowStats);
         }
 
