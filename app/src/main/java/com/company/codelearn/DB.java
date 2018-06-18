@@ -118,48 +118,47 @@ public class DB {
     private void createQuiz(){
 
 
-        quizAnswers.add("Konrad Adamik"); quizAnswers.add("Kamil Chmiel"); quizAnswers.add("Arkadiusz Jastrzębski"); quizAnswers.add("Kamil Majerczyk");
-        quizElements.add(new QuizElement(1,"Who created this?", new ArrayList<>(quizAnswers),1));
+        quizAnswers.add("1983"); quizAnswers.add("1985"); quizAnswers.add("1981"); quizAnswers.add("1987");
+        quizElements.add(new QuizElement(1,"In what year this programming language gained it's name - C++?", new ArrayList<>(quizAnswers),1));
         quizAnswers.clear();
 
-        quizAnswers.add("Chaos"); quizAnswers.add("Kronos"); quizAnswers.add("Kometa Halleya"); quizAnswers.add("God");
-        quizElements.add(new QuizElement(1,"Who created world?",new ArrayList<>(quizAnswers),3));
+        quizAnswers.add("1990"); quizAnswers.add("1998"); quizAnswers.add("1989"); quizAnswers.add("1985");
+        quizElements.add(new QuizElement(1,"In what year C++ was updated to include protected and static members?",new ArrayList<>(quizAnswers),3));
         quizAnswers.clear();
 
-        quizAnswers.add("Fibbonaci"); quizAnswers.add("Vladimir Helloworldov"); quizAnswers.add("BillGates"); quizAnswers.add("Si plas plas");
-        quizElements.add(new QuizElement(1,"Who created hello world?",new ArrayList<>(quizAnswers),2));
+        quizAnswers.add("EDGE C/C++"); quizAnswers.add("GNU C/C++"); quizAnswers.add("Visual C++ (cl)"); quizAnswers.add("Intel C++ Compiler");
+        quizElements.add(new QuizElement(1,"Which compiler is most frequently used and  available for free?",new ArrayList<>(quizAnswers),2));
         quizAnswers.clear();
 
-        quizAnswers.add("Best guy in the world"); quizAnswers.add("Kolarz"); quizAnswers.add("Pedalarz"); quizAnswers.add("Scrum Master");
-        quizElements.add(new QuizElement(1,"Who is Adrian Madej?",new ArrayList<>(quizAnswers),4));
+        quizAnswers.add("main()"); quizAnswers.add("f1()"); quizAnswers.add("max()"); quizAnswers.add("create()");
+        quizElements.add(new QuizElement(1,"All console programs have one vital function, what is it called?",new ArrayList<>(quizAnswers),1));
         quizAnswers.clear();
 
-        quizAnswers.add("Beacuse its the best wzorzec"); quizAnswers.add("Because wymyślił to Konrad Adamik"); quizAnswers.add("Because YES"); quizAnswers.add("All of the aboce");
-        quizElements.add(new QuizElement(1,"Why DB.java have the best wzorzec projektowy - placeholder?",new ArrayList<>(quizAnswers),4));
+        quizAnswers.add("cout<<endl;"); quizAnswers.add("int x = 10;"); quizAnswers.add("return 0;"); quizAnswers.add("#include <iostream>");
+        quizElements.add(new QuizElement(1,"Which part of code needs to be added at the beginning for hello world to work ?",new ArrayList<>(quizAnswers),4));
         quizAnswers.clear();
 
 
     }
 
 
-    private String history = "Język C++ został stworzony w latach osiemdziesiątych XX wieku (pierwsza wersja pojawiła się w 1979 r.) przez Bjarne Stroustrupa jako obiektowe rozszerzenie języka C. Poza językiem C, na definicję języka C++ miały wpływ takie języki, jak Simula (z której zaczerpnął właściwości obiektowe) oraz Algol, Ada, ML i Clu.\n" +
+    private String history = "The C++ programming language has a history going back to 1979, when Bjarne Stroustrup was doing work for his Ph.D. thesis. One of the languages Stroustrup had the opportunity to work with was a language called Simula, which as the name implies is a language primarily designed for simulations. The Simula 67 language - which was the variant that Stroustrup worked with - is regarded as the first language to support the object-oriented programming paradigm. Stroustrup found that this paradigm was very useful for software development, however the Simula language was far too slow for practical use.\n" +
             "\n" +
-            "Początkowo język C++ był dostępny w takim standardzie, w jakim opracowano ostatnią wersję kompilatora Cfront (tłumaczący C++ na C), później opublikowano pierwszy nieformalny standard zwany ARM (Annotated Reference Manual), który sporządzili Bjarne Stroustrup i Margaret Ellis. Standard języka C++ powstał w 1998 roku (ISO/IEC 14882-1998 \"Information Technology – Programming Languages – C++\"). Standard ten zerwał częściowo wsteczną zgodność z ARM w swojej bibliotece standardowej; jedyne, co pozostało w stanie w miarę nienaruszonym to biblioteka iostream.\n" +
+            "Shortly thereafter, he began work on \"C with Classes\", which as the name implies was meant to be a superset of the C language. His goal was to add object-oriented programming into the C language, which was and still is a language well-respected for its portability without sacrificing speed or low-level functionality. His language included classes, basic inheritance, inlining, default function arguments, and strong type checking in addition to all the features of the C language.\n" +
             "\n" +
-            "Początkowo najważniejszą zmianą wprowadzoną w C++ w stosunku do C było programowanie obiektowe, później jednak zaimplementowano wiele innych ulepszeń, mających uczynić ten język wygodniejszym i bardziej elastycznym od swojego pierwowzoru. Niektóre zmiany w standardzie języka C były zainspirowane językiem C++ (np. słowo inline w C99).\n" +
+            "The first C with Classes compiler was called Cfront, which was derived from a C compiler called CPre. It was a program designed to translate C with Classes code to ordinary C. A rather interesting point worth noting is that Cfront was written mostly in C with Classes, making it a self-hosting compiler (a compiler that can compile itself). Cfront would later be abandoned in 1993 after it became difficult to integrate new features into it, namely C++ exceptions. Nonetheless, Cfront made a huge impact on the implementations of future compilers and on the Unix operating system.\n" +
             "\n" +
-            "Nazwa języka została zaproponowana przez Ricka Mascitti w 1983 roku, kiedy to po raz pierwszy użyto tego języka poza laboratorium naukowym. Odzwierciedla ona fakt, że język ten jest rozszerzeniem języka C. Wcześniej używano nazwy „C z klasami”. Nazwa języka C++ nawiązuje do faktu bycia \"następcą języka C\", przez użycie w niej operatora inkrementacji \"++\". Inkrementacja to zwiększenie liczby o 1, w języku C++ do jej wykonania wykorzystywany jest ww. operator; dla przykładu:\n" +
+            "In 1983, the name of the language was changed from C with Classes to C++. The ++ operator in the C language is an operator for incrementing a variable, which gives some insight into how Stroustrup regarded the language. Many new features were added around this time, the most notable of which are virtual functions, function overloading, references with the & symbol, the const keyword, and single-line comments using two forward slashes (which is a feature taken from the language BCPL).\n" +
             "\n" +
-            "zapis:\n" +
+            "In 1985, Stroustrup's reference to the language entitled The C++ Programming Language was published. That same year, C++ was implemented as a commercial product. The language was not officially standardized yet, making the book a very important reference. The language was updated again in 1989 to include protected and static members, as well as inheritance from several classes.\n" +
             "\n" +
-            "i=i+1; // zmiennej \"i\" przypisuje jej aktualną wartość, powiększoną o 1\n" +
-            "... jest równoważny[a]\n" +
+            "In 1990, The Annotated C++ Reference Manual was released. The same year, Borland's Turbo C++ compiler would be released as a commercial product. Turbo C++ added a plethora of additional libraries which would have a considerable impact on C++'s development. Although Turbo C++'s last stable release was in 2006, the compiler is still widely used.\n" +
             "\n" +
-            "++i; // również powiększa wartość zmiennej \"i\" o 1.\n" +
-            "// Uwaga! instrukcja i++ także zwiększa wartość zmiennej, po jej użyciu.\n" +
-            "Nazwa C++ jest więc symbolicznym stwierdzeniem, iż jest to język C, unowocześniony, o większych możliwościach.\n" +
+            "In 1998, the C++ standards committee published the first international standard for C++ ISO/IEC 14882:1998, which would be informally known as C++98. The Annotated C++ Reference Manual was said to be a large influence in the development of the standard. The Standard Template Library, which began its conceptual development in 1979, was also included. In 2003, the committee responded to multiple problems that were reported with their 1998 standard, and revised it accordingly. The changed language was dubbed C++03.\n" +
             "\n" +
-            "Pierwsze kompilatory języka C++, podobnie jak Cfront, były wyłącznie translatorami na język C. Kompilatory takie dostępne są i dziś. Jednym z nich jest Comeau C++ – jeden z niewielu kompilatorów oferujących pełne wsparcie dla standardu języka. Pierwszym kompilatorem natywnym (produkującym od razu kod asemblerowy) dla języka C++ był g++ z pakietu GCC, którego pierwszym autorem był Michael Tiemann, założyciel Cygnus Solutions.";
+            "In 2005, the C++ standards committee released a technical report (dubbed TR1) detailing various features they were planning to add to the latest C++ standard. The new standard was informally dubbed C++0x as it was expected to be released sometime before the end of the first decade. Ironically, however, the new standard would not be released until mid-2011. Several technical reports were released up until then, and some compilers began adding experimental support for the new features.\n" +
+            "\n" +
+            "In mid-2011, the new C++ standard (dubbed C++11) was finished. The Boost library project made a considerable impact on the new standard, and some of the new modules were derived directly from the corresponding Boost libraries. Some of the new features included regular expression support (details on regular expressions may be found here), a comprehensive randomization library, a new C++ time library, atomics support, a standard threading library (which up until 2011 both C and C++ were lacking), a new for loop syntax providing functionality similar to foreach loops in certain other languages, the auto keyword, new container classes, better support for unions and array-initialization lists, and variadic templates.";
 
     private String enviroment = "Local Environment Setup\n" +
             "If you are still willing to set up your environment for C++, you need to have the following two softwares on your computer.\n" +
@@ -212,50 +211,38 @@ public class DB {
             "\n" +
             "When the installation is complete, you will be able to run gcc, g++, ar, ranlib, dlltool, and several other GNU tools from the Windows command line.";
 
-    private String helloWorld = "Wybieramy: File> New> Project… w nowym oknie wybieramy Win32 Console Application i w polu Name podajemy nazwę projektu (obojętnie jaką, byle byśmy sami się później połapali co ten projekt zawiera). Klikamy OK, potem Next> i Finish.\n" +
+    private String helloWorld = "Let us begin by writing our first C++ program that prints the message \"hello, world\" on the display console.\n" +
             "\n" +
-            "Zobaczymy w nowo otwartej karcie cząstki kodu – możecie go z czystym sumieniem usunąć. Na tym etapie jest nam to wogóle niepotrzebne.\n" +
+            "Step 1: Write the Source Code: Enter the following source codes using a programming text editor (such as NotePad++ for Windows or gedit for UNIX/Linux/Mac) or an Interactive Development Environment (IDE) (such as CodeBlocks, Eclipse, NetBeans or Visual Studio - Read the respective \"How-To\" article on how to install and get started with these IDEs).\n" +
             "\n" +
-            "4) Jeżeli piszesz w MVS 2010 musisz do kodu dodać bibliotekę stdafx.h Jeżeli korzystasz z innego kompilatora (np. Dev C++) jest ona zbyteczna.\n" +
+            "Do not enter the line numbers (on the left panel), which were added to help in the explanation. Save the source file as \"hello.cpp\". A C++ source file should be saved with a file extension of \".cpp\". You should choose a filename which reflects the purpose of the program.\n" +
             "\n" +
-            "Gotowe! Jesteście gotowi do pisania swojego pierwszego programu! Zaczynajmy więc \uD83D\uDE42\n" +
-            "\n" +
-            "Na początek kod:\n" +
-            "\n" +
-            "#include <stdafx.h>        //Powtarzam: tylko dla MVS 2010\n" +
-            "#include <iostream>\n" +
-            " \n" +
+            " * First C++ program that says hello (hello.cpp)\n" +
+            " */\n" +
+            "#include <iostream>    // Needed to perform IO operations\n" +
             "using namespace std;\n" +
             " \n" +
-            "int main()\n" +
-            "{\n" +
-            "    cout<<\"Hello World!\";\n" +
-            "    cin.get();\n" +
-            "    return 0;\n" +
-            "}\n" +
-            "Czas na wyjaśnienie:\n" +
+            "int main() {                        // Program entry point\n" +
+            "   cout << \"hello, world\" << endl;  // Say Hello\n" +
+            "   return 0;                        // Terminate main()\n" +
+            "}                                   // End of main function/* ...... */\n" +
+            "// ... until the end of the line\n" +
+            "These are called comments. Comments are NOT executable and are ignored by the compiler; but they provide useful explanation and documentation to your readers (and to yourself three days later). There are two kinds of comments:\n" +
             "\n" +
-            "#include – z angielskiego w tłumaczeniu znaczy mniej więcej tyle co dołączyć. Sama dyrektywa zawsze musi być poprzedzona # (wiele osób o tym na początku zapomina) i „informuje” program aby dołączył zawartość biblioteki iostream. Po co? Ano w niej zapisano chociażby co znaczy cout. Jeżeli jej zabraknie dla kompilatora nasze cout będzie znaczyło tyle co każde inne słowo więc nie będzie on w stanie skompilować czyli przetłumaczyć dla procesora naszego programu. Bo jak skoro sam go nie rozumie? Dzięki dołączeniu iostream rozumie i sobie kompiluje. Dość wspomnieć, że jest to jedna z podstawowych bibliotek i wykorzystuje się ją chyba zawsze.\n" +
+            "Multi-line Comment: begins with /* and ends with */. It may span more than one lines (as in Lines 1-3).\n" +
+            "End-of-line Comment: begins with // and lasts until the end of the current line (as in Lines 4, 7, 8, 9 and 10).\n" +
+            "#include <iostream>\n" +
+            "using namespace std;\n" +
+            "The \"#include\" is called a preprocessor directive. Preprocessor directives begin with a # sign. They are processed before compilation. The directive \"#include <iostream>\" tells the preprocessor to include the \"iostream\" header file to support input/output operations. The \"using namespace std;\" statement declares std as the default namespace used in this program. The names cout and endl, which is used in this program, belong to the std namespace. These two lines shall be present in all our programs. I will explain their meaning later.\n" +
             "\n" +
-            "using namespace std; – jest to tak zwana przestrzeń nazw. Pojęcie na początku trochę skomplikowane, ale jeżeli dobrze się wczytasz to obiecuję, że zrozumiesz. Więc tak: w przeciwieństwie do języków pokroju Pascal, C++ jest bardzo rozbudowany i nierzadko jeden projekt to zlepka kilku mniejszych – żeby wam to dobrze przedstawić to posłużę się takim oto porównaniem: Programista_1 pisze funkcję odpowiedzialną za np. otwieranie pliku, Programista_2 pisze funkcję pozwalającą na konwersję pliku, Programista_3 napisze funkcję zamykającą program. Teraz zbierzmy to do kupy. Wyobraźcie sobie, że wszyscy trzej nazwali swoją funkcję File(); I co gdy złożymy je razem? Funkcja otwierająca plik to File(), konwertująca to File() i zamykająca to File(). No to program wywołuje funkcję File() i … właśnie, co? Ma otworzyć, konwertować czy zamknąć plik? Przestrzeń nazw rozwiązuje ten problem – Programista_1 stworzy przestrzeń nazw prog_1 w której to funkcja File() będzie otwierała plik, Programista_2 napisze prog_2 i w tej przestrzeni funkcja File() będzie konwertowała plik zaś Programista_3 stworzy przestrzeń o nazwie prog_3 w której to File() będzie zamykało plik. I gdy teraz program wywoła funkcję File() to sprawdzi w jakiej przestrzeni nazw się ona znajduje i jak ją tam zdefiniowano.\n" +
+            "int main() { ... body ... }\n" +
+            "defines the so-called main() function. The main() function is the entry point of program execution. main() is required to return an int (integer).\n" +
             "\n" +
-            "Pierwsze programy nie będą aż tak rozbudowane by zaistniała konieczność korzystania z kilku przestrzeni. Wystarczy nam standardowa (std to właśnie skrót do „standard”), nie mniej jednak musicie jej używać. W kolejnych lekcjach nauczymy się pisać własne \uD83D\uDE09\n" +
+            "cout << \"hello, world\" << endl;\n" +
+            "\"cout\" refers to the standard output (or Console OUTput). The symbol << is called the stream insertion operator (or put-to operator), which is used to put the string \"hello, world\" to the console. \"endl\" denotes the END-of-Line or newline, which is put to the console to bring the cursor to the beginning of the next line.\n" +
             "\n" +
-            "main() – podstawowa, główna funkcja programu. Występuje chyba w każdym programie (istnieją wyjątki, ale można je policzyć na palcach jednej ręki sapera). Jest to główna funkcja wywoływana przez kod startowy (jest on jakby pośrednikiem między programem a systemem). W nawiasach mogą znaleźć się argumenty – czyli informacje jakie kod startowy przekazuje funkcji main(). W tym przypadku nie przyjmuje żadnych więc nawias pozostaje pusty.\n" +
-            "\n" +
-            "Można też zastosować main(void) jednak za poprawne uznaje się raczej puste nawiasy.\n" +
-            "\n" +
-            "Dlaczego int widnieje przed nazwą funkcji? Skoro funkcja może przyjmować dane (argumenty) to może je też zwracać (wartości). Nasze int oznacza, że zwraca, void znaczyłoby, że funkcja nie zwraca żadnej wartości.\n" +
-            "\n" +
-            "{ i } – cóz te nawiasy klamrowe to sygnał dla programu gdzie się kończy a gdzie zaczyna. Coś jak BEGIN i END. w Pascalu.\n" +
-            "\n" +
-            "cout<< – obiekt wyświetlający tekst na ekranie, chociaż poprawnie brzmiąca definicja to: obiekt wstawiający łańcuch znaków do strumienia wyjściowego. Nasze << oznacza, że znaki znajdujące się za tym operatorem wstawiane są do strumienia wyjściowego. Jeżeli operator byłby skierowany w drugą stronę (>>) to znaki kierowane byłyby do strumienia wejściowego.\n" +
-            "\n" +
-            "To co chcemy „wyrzucić” userowi na ekran musi znaleźć się w cudzysłowie.\n" +
-            "\n" +
-            "cin.get(); – czeka na wciśnięcie klawisza. Gdyby go nie było program by zadziałał ale … wyglądałoby to tak: dołączam biblioteki jakie sobie zażyczył programista, sprawdzam przestrzeń nazw, wyświetlam tekst, zamykam program. I wszystko byłoby ok, gdyby nie fakt, że program wykona wszytkie te operacje w ułamku sekundy. Ludzkie oko nie zdąży tego zarejestrować – jedynie mignie nam czarne okienko na pulpicie. Jeżeli zaś dodamy cin.get() program się zatrzyma do wciśnięcia klawisza. Potem dalej będzie pędził.\n" +
-            "\n" +
-            "return 0 – instrukcja zwracająca jakąś wartość – jaką to już zależy od funkcji. Bardzo często korzysta się z niej do zwracania numerów błędów.";
+            "return 0;\n" +
+            "terminates the main() function and returns a value of 0 to the operating system. Typically, return value of 0 signals normal termination; whereas value of non-zero (usually 1) signals abnormal termination. This line is optional. C++ compiler will implicitly insert a \"return 0;\" to the end of the main() function.";
 }
 
 

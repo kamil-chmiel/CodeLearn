@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity
         implements LecturesFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
     private UserData userData;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userData = (UserData) getIntent().getSerializableExtra("UserData");
+        userData = new UserData(FirebaseAuth.getInstance().getCurrentUser());
 
         System.out.println(userData);
 
