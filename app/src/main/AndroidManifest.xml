@@ -37,8 +37,6 @@
             android:name=".QuizViewActivity"
             android:label="@string/title_activity_quiz_view"
             android:theme="@style/AppTheme" />
-    </application>
-
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 
