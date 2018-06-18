@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity
         implements LecturesFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
     private UserData userData;
@@ -97,7 +99,6 @@ public class MainActivity extends AppCompatActivity
                         .commit();
             }
         });
-
     }
 
     private void initNavigationView() {
@@ -166,6 +167,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(intentShowStats);
         } else if (id == R.id.nav_friends) {
             Intent intentShowStats = new Intent(MainActivity.this, FriendActivity.class);
+            startActivity(intentShowStats);
+        } else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intentShowStats = new Intent(MainActivity.this, IntroActivity.class);
             startActivity(intentShowStats);
         }
 
