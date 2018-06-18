@@ -5,9 +5,9 @@ import com.google.firebase.auth.FirebaseUser;
 import java.io.Serializable;
 
 public class UserData implements Serializable {
-    private final String userId;
-    private final String name;
-    private final String email;
+    private String userId;
+    private String name;
+    private String email;
 
     public UserData(String userId, String name, String email) {
         this.userId = userId;
@@ -40,5 +40,9 @@ public class UserData implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

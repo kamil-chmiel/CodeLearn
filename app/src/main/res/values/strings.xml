@@ -18,4 +18,6 @@
         <item>@string/feedbacktype1</item>
         <item>@string/feedbacktype2</item>
     </string-array>
+    <string name="facebook_app_id">467829047003211</string>
+    <string name="fb_login_protocol_scheme">fb467829047003211</string>
 </resources>

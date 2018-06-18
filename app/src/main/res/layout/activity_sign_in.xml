@@ -83,15 +83,23 @@
             app:srcCompat="@drawable/googlelogo" />
     </LinearLayout>
 
-    <Button
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/signInFacebookButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Sign In with Facebook" />
+        android:layout_weight="1" />
+    <!--<Button-->
+        <!--android:id="@+id/signInFacebookButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="Sign In with Facebook" />-->
 
     <Button
         android:id="@+id/signInGoogleButton"
