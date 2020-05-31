@@ -51,6 +51,8 @@ public class SignInActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     private CallbackManager callbackManager;
 
+    private boolean isFirstStart = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +101,13 @@ public class SignInActivity extends AppCompatActivity {
                                 if (authResultTask.isSuccessful()) {
                                     UserData data = accountManager.getUserData();
                                     new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
-                                    Intent intent = new Intent(this, MainActivity.class);
+                                    Intent intent;
+                                    if(isFirstStart) {
+                                        intent = new Intent(this, LevelActivity.class);
+                                        isFirstStart = false;
+                                    } else {
+                                        intent = new Intent(this, MainActivity.class);
+                                    }
                                     intent.putExtra("UserData", data);
                                     startActivity(intent);
                                 } else {
@@ -173,7 +181,13 @@ public class SignInActivity extends AppCompatActivity {
                         data.setEmail("developercodelearn@gmail.com");
 
                         new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
-                        Intent intent = new Intent(this, MainActivity.class);
+                        Intent intent;
+                        if(isFirstStart) {
+                            intent = new Intent(this, LevelActivity.class);
+                            isFirstStart = false;
+                        } else {
+                            intent = new Intent(this, MainActivity.class);
+                        }
                         intent.putExtra("UserData", data);
                         startActivity(intent);
                     } else {
@@ -222,7 +236,13 @@ public class SignInActivity extends AppCompatActivity {
                     if (authResultTask.isSuccessful()) {
                         UserData data = accountManager.getUserData();
                         new DatabaseHelper(getApplicationContext()).createUserIfNotExist(data);
-                        Intent intent = new Intent(this, MainActivity.class);
+                        Intent intent;
+                        if(isFirstStart) {
+                            intent = new Intent(this, LevelActivity.class);
+                            isFirstStart = false;
+                        } else {
+                            intent = new Intent(this, MainActivity.class);
+                        }
                         intent.putExtra("UserData", data);
                         startActivity(intent);
                     } else {

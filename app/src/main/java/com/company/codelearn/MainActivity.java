@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         userData = (UserData) getIntent().getSerializableExtra("UserData");
-
         System.out.println(userData);
 
         setContentView(R.layout.activity_main);

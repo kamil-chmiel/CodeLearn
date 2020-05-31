@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.company.codelearn.LevelActivity">
 
     <TextView
@@ -17,26 +19,26 @@
         tools:layout_editor_absoluteY="37dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Regular"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="178dp" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/button111"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Junior"
         tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <Button
+        android:id="@+id/button222"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Regular"
+        tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="112dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button333"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Senior"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="242dp" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
